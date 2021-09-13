@@ -12,6 +12,7 @@
         <module>datetime</module>
         <module>generics</module>
         <module>functional</module>
+        <module>exception</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
