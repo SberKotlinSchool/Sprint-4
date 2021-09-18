@@ -8,12 +8,12 @@ object PowFactory {
      */
     fun buildPowFunction(pow: Int) : (Int) -> Int {
 
-        return {it.toDouble().pow(pow).toInt()}
-//        return {
-//            var sum = it
-//            for(i  in 1 until pow)
-//                sum*=it
-//            sum
-//        } или второй вариант без приведения типов
+       // return {it.toDouble().pow(pow).toInt()}
+        return { numberToPow ->
+            var powResult = numberToPow
+            repeat(pow-1){powResult *= numberToPow }
+            powResult
+        }
+        //сделал через репит, больше нравится теперь чем 1 вариант
     }
 }
