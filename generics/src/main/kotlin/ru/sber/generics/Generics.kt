@@ -9,7 +9,7 @@ fun <T> compare (p1: Pair<T,T>, p2: Pair<T,T>): Boolean {
 }
 
 // 2.
-fun <Any : Comparable<Any>> countGreaterThan(anArray: Array<Any>, elem: Any): Int {
+fun <T : Comparable<T>> countGreaterThan(anArray: Array<T>, elem: T): Int {
     return anArray.filter { it > elem }.count()
 }
 
