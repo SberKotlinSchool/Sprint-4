@@ -7,37 +7,20 @@ import org.junit.jupiter.api.Test
 internal class StudentsGroupTest {
 
     private var studentGroup = StudentsGroup()
-    private val stub = "No value"
 
     @BeforeEach
     fun init(){
-        studentGroup = StudentsGroup()
-        studentGroup.students = listOf(
+        studentGroup.init(listOf(
                 Student("Oleg",
                         "Olegov",
-                        averageRate = 20.1,
-                        age = 1,
-                        city = stub,
-                        specialization = stub,
-                        prevEducation = stub,
-                        middleName = stub),
-                Student("Andrey",
-                        "Andreev",
-                        averageRate = 34.5,
-                        age = 1,
-                        city = stub,
-                        specialization = stub,
-                        prevEducation = stub,
-                        middleName = stub),
+                        averageRate = 20.1),
                 Student("Baron",
                         "Baronov",
-                        averageRate = 60.0,
-                        age = 1,
-                        city = stub,
-                        specialization = stub,
-                        prevEducation = stub,
-                        middleName = stub)
-        )
+                        averageRate = 60.0),
+                Student("Andrey",
+                        "Andreev",
+                        averageRate = 34.5)
+        ))
     }
 
 
@@ -48,12 +31,7 @@ internal class StudentsGroupTest {
 
         assertTrue(result[0] == Student("Baron",
                 "Baronov",
-                averageRate = 60.0,
-                age = 1,
-                city = stub,
-                specialization = stub,
-                prevEducation = stub,
-                middleName = stub))
+                averageRate = 60.0))
     }
 
     @Test
@@ -63,12 +41,7 @@ internal class StudentsGroupTest {
 
         assertTrue(result[0] == Student("Andrey",
                 "Andreev",
-                averageRate = 34.5,
-                age = 1,
-                city = stub,
-                specialization = stub,
-                prevEducation = stub,
-                middleName = stub))
+                averageRate = 34.5))
     }
 
 }
