@@ -19,8 +19,8 @@ fun getZonesWithNonDivisibleByHourOffset(): Set<String> {
 fun getLastInMonthDayWeekList(year: Int): List<String> {
     return Month.values()
         .map { month ->
-            LocalDateTime
-                .of(year, month, 4, 4, 4)
+            LocalDate
+                .of(year, month, 4)
                 .with(TemporalAdjusters.lastDayOfMonth())
                 .dayOfWeek
                 .name
@@ -32,8 +32,8 @@ fun getLastInMonthDayWeekList(year: Int): List<String> {
 fun getNumberOfFridayThirteensInYear(year: Int): Int {
     return Month.values()
         .filter { month ->
-            LocalDateTime
-                .of(year, month, 13, 1, 1)
+            LocalDate
+                .of(year, month, 13)
                 .dayOfWeek == DayOfWeek.FRIDAY
         }
         .count()
