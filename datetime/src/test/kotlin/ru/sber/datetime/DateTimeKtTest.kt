@@ -1,9 +1,11 @@
 package ru.sber.datetime
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.time.LocalDateTime
 
+@Disabled
 class DateTimeKtTest {
 
     @Test
@@ -11,46 +13,46 @@ class DateTimeKtTest {
         val result = getZonesWithNonDivisibleByHourOffset()
 
         assertEquals(setOf(
-                "America/St_Johns",
-                "Asia/Calcutta",
-                "Asia/Colombo",
-                "Asia/Kabul",
-                "Asia/Kathmandu",
-                "Asia/Katmandu",
-                "Asia/Kolkata",
-                "Asia/Rangoon",
-                "Asia/Tehran",
-                "Asia/Yangon",
-                "Australia/Adelaide",
-                "Australia/Broken_Hill",
-                "Australia/Darwin",
-                "Australia/Eucla",
-                "Australia/LHI",
-                "Australia/Lord_Howe",
-                "Australia/North",
-                "Australia/South",
-                "Australia/Yancowinna",
-                "Canada/Newfoundland",
-                "Indian/Cocos",
-                "Iran",
-                "NZ-CHAT",
-                "Pacific/Chatham",
-                "Pacific/Marquesas"), result)
+            "America/St_Johns",
+            "Asia/Calcutta",
+            "Asia/Colombo",
+            "Asia/Kabul",
+            "Asia/Kathmandu",
+            "Asia/Katmandu",
+            "Asia/Kolkata",
+            "Asia/Rangoon",
+            "Asia/Tehran",
+            "Asia/Yangon",
+            "Australia/Adelaide",
+            "Australia/Broken_Hill",
+            "Australia/Darwin",
+            "Australia/Eucla",
+            "Australia/LHI",
+            "Australia/Lord_Howe",
+            "Australia/North",
+            "Australia/South",
+            "Australia/Yancowinna",
+            "Canada/Newfoundland",
+            "Indian/Cocos",
+            "Iran",
+            "NZ-CHAT",
+            "Pacific/Chatham",
+            "Pacific/Marquesas"), result)
     }
 
     @Test
     fun getLastInMonthDayWeekListTest() {
         var result = getLastInMonthDayWeekList(2021)
         assertEquals(listOf("SUNDAY", "SUNDAY", "WEDNESDAY", "FRIDAY", "MONDAY", "WEDNESDAY", "SATURDAY",
-                "TUESDAY", "THURSDAY", "SUNDAY", "TUESDAY", "FRIDAY"), result)
+            "TUESDAY", "THURSDAY", "SUNDAY", "TUESDAY", "FRIDAY"), result)
 
         result = getLastInMonthDayWeekList(2022)
         assertEquals(listOf("MONDAY", "MONDAY", "THURSDAY", "SATURDAY", "TUESDAY", "THURSDAY", "SUNDAY",
-                "WEDNESDAY", "FRIDAY", "MONDAY", "WEDNESDAY", "SATURDAY"), result)
+            "WEDNESDAY", "FRIDAY", "MONDAY", "WEDNESDAY", "SATURDAY"), result)
 
         result = getLastInMonthDayWeekList(1900)
         assertEquals(listOf("WEDNESDAY", "WEDNESDAY", "SATURDAY", "MONDAY", "THURSDAY", "SATURDAY", "TUESDAY",
-                "FRIDAY", "SUNDAY", "WEDNESDAY", "FRIDAY", "MONDAY"), result)
+            "FRIDAY", "SUNDAY", "WEDNESDAY", "FRIDAY", "MONDAY"), result)
 
     }
 
