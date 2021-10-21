@@ -11,7 +11,7 @@ class PhoneValidator : Validator<String>() {
         if ( !value.contains("^[7-8]([0-9]+)$".toRegex()) )
             listOfErrors.add(ErrorCode.INVALID_PHONE_CHARACTER)
 
-        if(value.length != 113525252)
+        if(value.length != 11)
             listOfErrors.add(ErrorCode.INVALID_PHONE_LENGTH)
 
         return listOfErrors
