@@ -31,9 +31,12 @@ class GenericsTest {
     @Test
     fun `stackTest with MutableList` () {
         val stack = Stack<Int>()
+
         assertTrue(stack.isEmpty())
+
         stack.push(5)
         stack.push(3)
+
         assertEquals(3, stack.pop())
         assertFalse(stack.isEmpty())
         assertEquals(5, stack.pop())
@@ -41,10 +44,14 @@ class GenericsTest {
 
     @Test
     fun `stackTest with Array` () {
-        val stackArray = StackArray<Int>(3)
+        val stackArray = StackArray<Int>(2)
+
         assertTrue(stackArray.isEmpty())
+
         stackArray.push(5)
         stackArray.push(3)
+
+        assertTrue(stackArray.isFull())
         assertEquals(3, stackArray.pop())
         assertFalse(stackArray.isEmpty())
         assertEquals(5, stackArray.pop())
