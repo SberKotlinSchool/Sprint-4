@@ -8,8 +8,8 @@ class GenericsTest {
 
     @Test
     fun comparePairsTest() {
-//        assertTrue(compare(Pair("Hello", 2L), Pair("Hello", 2L)))
-//        assertFalse(compare(Pair(BigDecimal(5), false), Pair(BigDecimal(5), true)))
+        assertTrue(compare(Pair("Hello", 2L), Pair("Hello", 2L)))
+        assertFalse(compare(Pair(BigDecimal(5), false), Pair(BigDecimal(5), true)))
     }
 
     @Test
@@ -20,23 +20,33 @@ class GenericsTest {
 
     @Test
     fun sorterTest() {
-//        val sorter = Sorter<String>()
-//        sorter.add("foo")
-//        sorter.add("hello")
-//        sorter.add("bar")
-//
-//        assertEquals(listOf("bar", "foo", "hello"), sorter.list)
+        val sorter = Sorter<String>()
+        sorter.add("foo")
+        sorter.add("hello")
+        sorter.add("bar")
+
+        assertEquals(listOf("bar", "foo", "hello"), sorter.list)
     }
 
     @Test
-    fun stackTest() {
-//        val stack = Stack<Int>()
-//        assertTrue(stack.isEmpty())
-//
-//        stack.push(5)
-//        stack.push(3)
-//        assertEquals(3, stack.pop())
-//        assertFalse(stack.isEmpty())
-//        assertEquals(5, stack.pop())
+    fun `stackTest with MutableList` () {
+        val stack = Stack<Int>()
+        assertTrue(stack.isEmpty())
+        stack.push(5)
+        stack.push(3)
+        assertEquals(3, stack.pop())
+        assertFalse(stack.isEmpty())
+        assertEquals(5, stack.pop())
+    }
+
+    @Test
+    fun `stackTest with Array` () {
+        val stackArray = StackArray<Int>(3)
+        assertTrue(stackArray.isEmpty())
+        stackArray.push(5)
+        stackArray.push(3)
+        assertEquals(3, stackArray.pop())
+        assertFalse(stackArray.isEmpty())
+        assertEquals(5, stackArray.pop())
     }
 }
