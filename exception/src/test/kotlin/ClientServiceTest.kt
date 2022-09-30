@@ -18,20 +18,48 @@ class ClientServiceTest {
     }
 
     @Test
-    fun `fail save client - validation error`() {
+    fun `fail save client - phone validation error`() {
         val client = getClientFromJson("/fail/user_with_bad_phone.json")
-        assertThrows<ValidationException>("Ожидаемая ошибка") {
+        val exception = assertThrows<ValidationException>("Недопустимый номер телефона") {
             clientService.saveClient(client)
         }
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_PHONE_NUMBER)
     }
 
     @Test
-    fun `fail save client - validation errors`() {
+    fun `fail save client - name validation errors`() {
         val client = getClientFromJson("/fail/user_data_corrupted.json")
-        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+        val exception = assertFailsWith<ValidationException>("Недопустимый символ в имени клиента") {
             clientService.saveClient(client)
         }
-        assertEquals(exception.errorCode[0], ErrorCode.INVALID_CHARACTER)
+        assertEquals(exception.errorCode[2], ErrorCode.INVALID_NAME)
+    }
+
+    @Test
+    fun `fail save client - surname validation errors`() {
+        val client = getClientFromJson("/fail/user_data_corrupted.json")
+        val exception = assertFailsWith<ValidationException>("Недопустимый символ в фамилии клиента") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[3], ErrorCode.INVALID_SURNAME)
+    }
+
+    @Test
+    fun `fail save client - email validation errors`() {
+        val client = getClientFromJson("/fail/user_data_corrupted.json")
+        val exception = assertFailsWith<ValidationException>("Недопустимый e-mail") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[1], ErrorCode.INVALID_EMAIL)
+    }
+
+    @Test
+    fun `fail save client - snils validation errors`() {
+        val client = getClientFromJson("/fail/user_with_bad_snils.json")
+        val exception = assertFailsWith<ValidationException>("Недопустимый номер СНИЛС") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_SNILS_NUMBER)
     }
 
     private fun getClientFromJson(fileName: String): Client = this::class.java.getResource(fileName)
