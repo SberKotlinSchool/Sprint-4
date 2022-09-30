@@ -1,5 +1,4 @@
 import mu.KLogging
-import javax.naming.Name
 
 class ClientService {
 
