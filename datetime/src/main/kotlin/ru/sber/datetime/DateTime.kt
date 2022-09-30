@@ -58,7 +58,7 @@ fun getNumberOfFridayThirteensInYear(year: Int): Int {
 // 4.
 fun getFormattedDateTime(dateTime: LocalDateTime): String {
     val locale = Locale("en", "USA")
-    return dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm",locale))
+    return dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm", locale))
 
 }
 
