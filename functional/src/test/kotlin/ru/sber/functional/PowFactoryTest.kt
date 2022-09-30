@@ -8,6 +8,6 @@ class PowFactoryTest {
     fun `buildPowFunction should return lambda It should calculate to second power`() {
         // expect
          assertEquals(9, PowFactory.buildPowFunction(2)(3))
-         //assertEquals(125, PowFactory.buildPowFunction(3)(5))
+         //aassertEquals(125, PowFactory.buildPowFunction(3)(5))
     }
 }
