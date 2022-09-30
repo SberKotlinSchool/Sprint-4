@@ -6,6 +6,7 @@ import org.junit.jupiter.api.assertThrows
 import kotlin.random.Random
 import kotlin.test.assertEquals
 
+
 @DisplayName("StudentsGroupTest class test cases")
 internal class StudentsGroupTest {
 
