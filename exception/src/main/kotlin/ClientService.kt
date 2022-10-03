@@ -10,8 +10,11 @@ class ClientService {
 
     private fun validateClient(client: Client) {
         val errorList = ArrayList<ErrorCode>()
+        errorList.addAll(NameValidator().validate(client.firstName))
+        errorList.addAll(SurnameValidator().validate(client.lastName))
         errorList.addAll(PhoneValidator().validate(client.phone))
-        // ...
+        errorList.addAll(SnilsValidator().validate(client.snils))
+        errorList.addAll(EmailValidator().validate(client.email))
         if (errorList.isNotEmpty()) {
             throw ValidationException(*errorList.toTypedArray())
         }

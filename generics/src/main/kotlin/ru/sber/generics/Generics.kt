@@ -1,27 +1,38 @@
 package ru.sber.generics
 
-import com.sun.org.apache.xpath.internal.operations.Bool
-import java.util.*
 
-// 1.
-//fun compare(p1: Pair, p2: Pair): Boolean {
-//    return false
-//}
+fun <T0, T1> compare(p1: Pair<T0, T1>, p2: Pair<T0, T1>): Boolean =
+    (p1.first?.equals(p2.first) == true && p1.second?.equals(p2.second) == true)
 
-// 2.
-fun countGreaterThan(anArray: Array<Any>, elem: Any): Int {
-    return 0
+
+fun <T : Comparable<T>> countGreaterThan(anArray: Array<T>, elem: T): Int =
+    anArray.filter { it > elem }.count()
+
+class Sorter<T : Comparable<T>> {
+    val list: MutableList<T> = mutableListOf()
+
+    fun add(value: T) {
+        list.add(value)
+        list.sort()
+    }
 }
 
-// 3.
-class Sorter {
-//    val list: MutableList
-//
-//    fun add(value: Any) {
-//    }
-}
+class Stack<T : Any> {
+    private val storage = arrayListOf<T>()
 
-// 4.
-class Stack {
+    fun push(element: T) {
+        storage.add(element)
+    }
+
+    fun pop(): T? {
+        if (storage.size == 0) {
+            return null
+        }
+        return storage.removeAt(storage.size - 1)
+    }
+
+    fun isEmpty(): Boolean {
+        return (storage.size == 0)
+    }
 
 }

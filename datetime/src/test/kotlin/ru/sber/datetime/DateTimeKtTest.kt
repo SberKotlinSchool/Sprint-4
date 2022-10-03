@@ -1,6 +1,6 @@
 package ru.sber.datetime
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.time.LocalDateTime
 
@@ -10,7 +10,8 @@ class DateTimeKtTest {
     fun getZonesWithNonDivisibleByHourOffsetTest() {
         val result = getZonesWithNonDivisibleByHourOffset()
 
-        assertEquals(setOf(
+        assertEquals(
+            setOf(
                 "America/St_Johns",
                 "Asia/Calcutta",
                 "Asia/Colombo",
@@ -35,22 +36,36 @@ class DateTimeKtTest {
                 "Iran",
                 "NZ-CHAT",
                 "Pacific/Chatham",
-                "Pacific/Marquesas"), result)
+                "Pacific/Marquesas"
+            ), result
+        )
     }
 
     @Test
     fun getLastInMonthDayWeekListTest() {
         var result = getLastInMonthDayWeekList(2021)
-        assertEquals(listOf("SUNDAY", "SUNDAY", "WEDNESDAY", "FRIDAY", "MONDAY", "WEDNESDAY", "SATURDAY",
-                "TUESDAY", "THURSDAY", "SUNDAY", "TUESDAY", "FRIDAY"), result)
+        assertEquals(
+            listOf(
+                "SUNDAY", "SUNDAY", "WEDNESDAY", "FRIDAY", "MONDAY", "WEDNESDAY", "SATURDAY",
+                "TUESDAY", "THURSDAY", "SUNDAY", "TUESDAY", "FRIDAY"
+            ), result
+        )
 
         result = getLastInMonthDayWeekList(2022)
-        assertEquals(listOf("MONDAY", "MONDAY", "THURSDAY", "SATURDAY", "TUESDAY", "THURSDAY", "SUNDAY",
-                "WEDNESDAY", "FRIDAY", "MONDAY", "WEDNESDAY", "SATURDAY"), result)
+        assertEquals(
+            listOf(
+                "MONDAY", "MONDAY", "THURSDAY", "SATURDAY", "TUESDAY", "THURSDAY", "SUNDAY",
+                "WEDNESDAY", "FRIDAY", "MONDAY", "WEDNESDAY", "SATURDAY"
+            ), result
+        )
 
         result = getLastInMonthDayWeekList(1900)
-        assertEquals(listOf("WEDNESDAY", "WEDNESDAY", "SATURDAY", "MONDAY", "THURSDAY", "SATURDAY", "TUESDAY",
-                "FRIDAY", "SUNDAY", "WEDNESDAY", "FRIDAY", "MONDAY"), result)
+        assertEquals(
+            listOf(
+                "WEDNESDAY", "WEDNESDAY", "SATURDAY", "MONDAY", "THURSDAY", "SATURDAY", "TUESDAY",
+                "FRIDAY", "SUNDAY", "WEDNESDAY", "FRIDAY", "MONDAY"
+            ), result
+        )
 
     }
 
