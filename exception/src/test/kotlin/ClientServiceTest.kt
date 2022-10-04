@@ -31,7 +31,7 @@ class ClientServiceTest {
         val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
             clientService.saveClient(client)
         }
-        assertEquals(exception.errorCode[0], ErrorCode.INVALID_CHARACTER)
+        assertEquals(ErrorCode.INVALID_NAME, exception.errorCode[0])
     }
 
     private fun getClientFromJson(fileName: String): Client = this::class.java.getResource(fileName)
