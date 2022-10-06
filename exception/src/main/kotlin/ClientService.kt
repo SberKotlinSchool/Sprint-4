@@ -13,6 +13,8 @@ class ClientService {
         errorList.addAll(PhoneValidator().validate(client.phone))
         errorList.addAll(NameValidator().validate(client.lastName))
         errorList.addAll(NameValidator().validate(client.firstName))
+        errorList.addAll(SnilsValidator().validate(client.snils))
+        errorList.addAll(EmailValidator().validate(client.email))
         if (errorList.isNotEmpty()) {
             throw ValidationException(*errorList.toTypedArray())
         }

@@ -26,6 +26,33 @@ class ClientServiceTest {
     }
 
     @Test
+    fun `fail save client - validation error on Email`() {
+        val client = getClientFromJson("/fail/user_with_bad_email.json")
+        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_EMAIL)
+    }
+
+    @Test
+    fun `fail save client - validation error on SNILS`() {
+        val client = getClientFromJson("/fail/user_with_bad_snils.json")
+        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_SNILS)
+    }
+
+    @Test
+    fun `fail save client - validation error on Name`() {
+        val client = getClientFromJson("/fail/user_with_bad_name.json")
+        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_CHARACTER)
+    }
+
+    @Test
     fun `fail save client - validation errors`() {
         val client = getClientFromJson("/fail/user_data_corrupted.json")
         val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
