@@ -1,25 +1,44 @@
 package ru.sber.datetime
 
-import java.time.LocalDateTime
+import java.time.*
+import java.time.format.DateTimeFormatter
+import java.time.temporal.TemporalAdjusters
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 // 1.
 fun getZonesWithNonDivisibleByHourOffset(): Set<String> {
-    return emptySet()
+    return ZoneOffset.getAvailableZoneIds()
+        .filter { TimeUnit.MILLISECONDS.toMinutes(TimeZone.getTimeZone(it).rawOffset.toLong()) % 60 != 0L }
+        .toSet()
 }
 
 // 2.
 fun getLastInMonthDayWeekList(year: Int): List<String> {
-    return emptyList()
+
+    return Month.values()
+        .map {
+            LocalDate.of(year, it, 1)
+                .with(TemporalAdjusters.lastDayOfMonth())
+                .dayOfWeek.toString()
+        }
+        .toList()
+
 }
 
 // 3.
 fun getNumberOfFridayThirteensInYear(year: Int): Int {
-    return 0
+
+    return Month.values()
+        .count { LocalDate.of(year, it, 13).dayOfWeek == DayOfWeek.FRIDAY }
 }
 
 // 4.
 fun getFormattedDateTime(dateTime: LocalDateTime): String {
-    return ""
+
+    DateTimeFormatter.ISO_DATE_TIME
+
+    return dateTime.format(DateTimeFormatter.ofPattern("dd MMM YYYY, HH:mm", Locale.US))
 }
 
 
