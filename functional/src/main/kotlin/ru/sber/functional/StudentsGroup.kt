@@ -2,9 +2,8 @@ package ru.sber.functional
 
 class StudentsGroup {
 
-    lateinit var students: List<Student>
+    var students: List<Student> = Students().generate(50)
 
-    fun filterByPredicate() {
-        TODO()
-    }
+    fun filterByPredicate(predicate: (Student) -> Boolean) =
+        students.filter(predicate).toList()
 }

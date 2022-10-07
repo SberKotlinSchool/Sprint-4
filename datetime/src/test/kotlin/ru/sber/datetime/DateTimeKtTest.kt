@@ -9,33 +9,36 @@ class DateTimeKtTest {
     @Test
     fun getZonesWithNonDivisibleByHourOffsetTest() {
         val result = getZonesWithNonDivisibleByHourOffset()
+        val expectedSet1 = setOf(
+            "America/St_Johns",
+            "Asia/Calcutta",
+            "Asia/Colombo",
+            "Asia/Kabul",
+            "Asia/Kathmandu",
+            "Asia/Katmandu",
+            "Asia/Kolkata",
+            "Asia/Rangoon",
+            "Asia/Tehran",
+            "Asia/Yangon",
+            "Australia/Adelaide",
+            "Australia/Broken_Hill",
+            "Australia/Darwin",
+            "Australia/Eucla",
+            "Australia/LHI",
+            "Australia/Lord_Howe",
+            "Australia/North",
+            "Australia/South",
+            "Australia/Yancowinna",
+            "Canada/Newfoundland",
+            "Indian/Cocos",
+            "Iran",
+            "NZ-CHAT",
+            "Pacific/Chatham",
+            "Pacific/Marquesas")
 
-        assertEquals(setOf(
-                "America/St_Johns",
-                "Asia/Calcutta",
-                "Asia/Colombo",
-                "Asia/Kabul",
-                "Asia/Kathmandu",
-                "Asia/Katmandu",
-                "Asia/Kolkata",
-                "Asia/Rangoon",
-                "Asia/Tehran",
-                "Asia/Yangon",
-                "Australia/Adelaide",
-                "Australia/Broken_Hill",
-                "Australia/Darwin",
-                "Australia/Eucla",
-                "Australia/LHI",
-                "Australia/Lord_Howe",
-                "Australia/North",
-                "Australia/South",
-                "Australia/Yancowinna",
-                "Canada/Newfoundland",
-                "Indian/Cocos",
-                "Iran",
-                "NZ-CHAT",
-                "Pacific/Chatham",
-                "Pacific/Marquesas"), result)
+        val expectedSet2 = expectedSet1.minus(arrayOf("Australia/Lord_Howe", "Australia/LHI"))
+
+        assertTrue(result == expectedSet1 || result == expectedSet2)
     }
 
     @Test
