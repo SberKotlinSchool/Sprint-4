@@ -39,7 +39,6 @@ class DateTimeKtTest {
         val expectedSet2 = expectedSet1.minus(arrayOf("Australia/Lord_Howe", "Australia/LHI"))
 
         assertTrue(result == expectedSet1 || result == expectedSet2)
-
     }
 
     @Test
