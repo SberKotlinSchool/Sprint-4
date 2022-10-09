@@ -19,12 +19,13 @@ class Sorter<T : Comparable<T>> {
 
     fun add(value: T) =
         if (list.size == 0) list.add(value)
-        else for (i in 0 until list.size) if (list.get(i).compareTo(value) >= 0 && i <= list.size) {
-            list.add(i, value)
-            break
-        } else if (i + 1 == list.size) {
-            list.add(value)
-        }
+        else for (i in 0 until list.size)
+            if (list.get(i).compareTo(value) >= 0 && i <= list.size) {
+                list.add(i, value)
+                break
+            } else if (i + 1 == list.size) {
+                list.add(value)
+            }
 }
 
 // 4.

@@ -15,12 +15,9 @@ class Students {
     private fun randomStudent() = Student(
         firstName = firstnames.random(),
         lastName = lastnames.random(),
-        middleName = "",
         age = (20..25).random(),
         averageRate = ((30..50).random() / 10 + (30..50).random() % 10).toDouble(),
         city = cities.random(),
-        specialization = "Отсутствует",
-        prevEducation = "Отсутствует",
     )
 
     companion object {

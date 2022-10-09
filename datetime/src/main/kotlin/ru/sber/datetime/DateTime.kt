@@ -27,6 +27,6 @@ fun getNumberOfFridayThirteensInYear(year: Int) = (1..12)
 
 // 4.
 fun getFormattedDateTime(dateTime: LocalDateTime) =
-    dateTime.format(DateTimeFormatter.ofPattern("dd MMM YYY, HH:mm").withLocale(Locale.US))
+    dateTime.format(DateTimeFormatter.ofPattern("dd MMM YYYY, HH:mm").withLocale(Locale.US))
 
 
