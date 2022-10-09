@@ -1,6 +1,5 @@
 import com.google.gson.Gson
 import org.junit.Test
-import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNotNull
@@ -18,20 +17,34 @@ class ClientServiceTest {
     }
 
     @Test
-    fun `fail save client - validation error`() {
+    fun `fail save client - invalid phone, email, snils`() {
         val client = getClientFromJson("/fail/user_with_bad_phone.json")
-        assertThrows<ValidationException>("Ожидаемая ошибка") {
-            clientService.saveClient(client)
-        }
-    }
-
-    @Test
-    fun `fail save client - validation errors`() {
-        val client = getClientFromJson("/fail/user_data_corrupted.json")
         val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
             clientService.saveClient(client)
         }
-        assertEquals(exception.errorCode[0], ErrorCode.INVALID_CHARACTER)
+        assertEquals(ErrorCode.INVALID_PHONE_NUMBER, exception.errorCode[0])
+        assertEquals(ErrorCode.INVALID_EMAIL, exception.errorCode[1])
+        assertEquals(ErrorCode.INVALID_SNILS, exception.errorCode[2])
+    }
+
+    @Test
+    fun `fail save client - names are invalid`() {
+        val client = getClientFromJson("/fail/user_data_names_are_invalid.json")
+        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(ErrorCode.LAST_NAME_INVALID_CHARACTER, exception.errorCode[0])
+        assertEquals(ErrorCode.FIRST_NAME_INVALID_CHARACTER, exception.errorCode[1])
+    }
+
+    @Test
+    fun `fail save client - names are null`() {
+        val client = getClientFromJson("/fail/user_data_names_are_null.json")
+        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(ErrorCode.LAST_NAME_IS_EMPTY, exception.errorCode[0])
+        assertEquals(ErrorCode.LAST_NAME_IS_EMPTY, exception.errorCode[0])
     }
 
     private fun getClientFromJson(fileName: String): Client = this::class.java.getResource(fileName)
