@@ -32,6 +32,7 @@ internal class StudentsGroupTest {
         group = StudentsGroup()
         group.students = mutableListOf()
 
+        //оставил сколько полей сколько захотел
         repeat(10) {
             (group.students as MutableList<Student>).add(
                 Student(
@@ -42,10 +43,7 @@ internal class StudentsGroupTest {
                         },
                     listOf("Иваныч", "Сергеевич", "Илонович").random(),
                     Random.nextInt(18, 24),
-                    Random.nextDouble() % 2 + 3,
-                    "Moscow",
-                    "Kotlin developer",
-                    null
+                    Random.nextDouble() % 2 + 3
                 )
             )
         }
