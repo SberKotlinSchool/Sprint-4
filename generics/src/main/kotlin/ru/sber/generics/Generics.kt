@@ -28,7 +28,7 @@ class Stack <E> {
     }
 
     fun pop() : E {
-        return stack.removeFirst()
+        return stack.removeLast()
     }
 
     fun isEmpty(): Boolean {
