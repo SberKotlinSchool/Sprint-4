@@ -1,7 +1,8 @@
-package ru.sber.functional
+package src.test.kotlin.ru.sber.functional
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import ru.sber.functional.PowFactory
 
 
 class PowFactoryTest {
