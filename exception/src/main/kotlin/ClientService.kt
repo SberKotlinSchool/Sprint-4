@@ -6,12 +6,15 @@ class ClientService {
         .also { validateClient(client) }
         .let { saveToMyPhantomDB(client) }
         .also { logger.info { "Успешно сохранена новая версия $it" } }
+        .also { println() }
 
-
-    private fun validateClient(client: Client) {
+    fun validateClient(client: Client) {
         val errorList = ArrayList<ErrorCode>()
         errorList.addAll(PhoneValidator().validate(client.phone))
-        // ...
+        errorList.addAll(FirstNameValidator().validate(client.firstName))
+        errorList.addAll(LastNameValidator().validate(client.lastName))
+        errorList.addAll(EmailValidator().validate(client.email))
+        errorList.addAll(SnilsValidator().validate(client.snils))
         if (errorList.isNotEmpty()) {
             throw ValidationException(*errorList.toTypedArray())
         }
@@ -21,4 +24,19 @@ class ClientService {
         .also { it.incrementVersion() }
 
     companion object : KLogging()
+}
+
+fun main() {
+    val client = Client(
+        phone = "1234567",
+        firstName = null,
+        lastName = null,
+        email = null,
+        snils = null,
+        version = 1
+    )
+
+    val clientService = ClientService()
+    clientService.validateClient(client)
+
 }
