@@ -6,7 +6,6 @@ class ClientService {
         .also { validateClient(client) }
         .let { saveToMyPhantomDB(client) }
         .also { logger.info { "Успешно сохранена новая версия $it" } }
-        .also { println() }
 
     fun validateClient(client: Client) {
         val errorList = ArrayList<ErrorCode>()
