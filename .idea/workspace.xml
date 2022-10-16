@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2c6014b4-d561-4a9e-8871-794200ccfc5e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/functional/src/test/java/ru/sber/functional/StudentsGroupTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datetime/src/main/kotlin/ru/sber/datetime/DateTime.kt" beforeDir="false" afterPath="$PROJECT_DIR$/datetime/src/main/kotlin/ru/sber/datetime/DateTime.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exception/src/main/kotlin/Client.kt" beforeDir="false" afterPath="$PROJECT_DIR$/exception/src/main/kotlin/Client.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional/src/main/kotlin/ru/sber/functional/PowFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/functional/src/main/kotlin/ru/sber/functional/PowFactory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional/src/main/kotlin/ru/sber/functional/Student.kt" beforeDir="false" afterPath="$PROJECT_DIR$/functional/src/main/kotlin/ru/sber/functional/Student.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional/src/main/kotlin/ru/sber/functional/StudentsGroup.kt" beforeDir="false" afterPath="$PROJECT_DIR$/functional/src/main/kotlin/ru/sber/functional/StudentsGroup.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functional/src/test/java/ru/sber/functional/PowFactoryTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/functional/src/test/java/ru/sber/functional/PowFactoryTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generics/src/main/kotlin/ru/sber/generics/Generics.kt" beforeDir="false" afterPath="$PROJECT_DIR$/generics/src/main/kotlin/ru/sber/generics/Generics.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generics/src/test/kotlin/ru/sber/generics/GenericsTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/generics/src/test/kotlin/ru/sber/generics/GenericsTest.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2G86NDk9DO0QCtPEwSzZZ1y5qmf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "C:/Users/thewe/OneDrive/Рабочий стол/Kotlin Backend/Sprint-4",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "shared-indexes"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+      <recent name="ru.sber.generics" />
+      <recent name="ru.sber.functional" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.Whole project">
+    <configuration name="PowFactoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="functional" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.sber.functional.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.sber.functional" />
+      <option name="MAIN_CLASS_NAME" value="ru.sber.functional.PowFactoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentsGroupTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="functional" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.sber.functional.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.sber.functional" />
+      <option name="MAIN_CLASS_NAME" value="ru.sber.functional.StudentsGroupTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Whole project (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Whole project (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Whole project" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.Whole project" />
+        <item itemvalue="JUnit.StudentsGroupTest" />
+        <item itemvalue="JUnit.PowFactoryTest" />
+        <item itemvalue="JUnit.Whole project (2)" />
+        <item itemvalue="JUnit.Whole project (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2c6014b4-d561-4a9e-8871-794200ccfc5e" name="Changes" comment="" />
+      <created>1665757822907</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1665757822907</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
