@@ -1,8 +1,8 @@
 {
   "firstName": null,
-  "lastName": "ИвановИвановИвановИвановИвановИвановИвановИвановИванов",
-  "phone": 123,
-  "email": "ivanov@mail",
-  "snils": "56553713000",
+  "lastName": null,
+  "phone": null,
+  "email": null,
+  "snils": null,
   "version": 1
 }
