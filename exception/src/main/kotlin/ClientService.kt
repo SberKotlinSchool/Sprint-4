@@ -1,5 +1,9 @@
 import mu.KLogging
 
+fun List<ErrorCode>.withName(name: String): List<String> = this.map {
+    "${it.msg} $name"
+}
+
 class ClientService {
 
     fun saveClient(client: Client): Client = client
@@ -9,11 +13,34 @@ class ClientService {
 
 
     private fun validateClient(client: Client) {
-        val errorList = ArrayList<ErrorCode>()
-        errorList.addAll(PhoneValidator().validate(client.phone))
-        // ...
+        val errorList = ArrayList<String>()
+        errorList.addAll(
+            FirstNameValidator()
+                .validate(client.firstName)
+                .withName("FirstName")
+        )
+        errorList.addAll(
+            LastNameValidator()
+                .validate(client.lastName)
+                .withName("lastName")
+        )
+        errorList.addAll(
+            PhoneValidator()
+                .validate(client.phone)
+                .withName("phone")
+        )
+        errorList.addAll(
+            EmailValidator()
+                .validate(client.email)
+                .withName("email")
+        )
+        errorList.addAll(
+            SnilsValidator()
+                .validate(client.snils)
+                .withName("snils")
+        )
         if (errorList.isNotEmpty()) {
-            throw ValidationException(*errorList.toTypedArray())
+            throw ValidationException(errorList.toTypedArray())
         }
     }
 
