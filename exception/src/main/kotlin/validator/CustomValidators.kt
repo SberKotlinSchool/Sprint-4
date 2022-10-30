@@ -19,5 +19,12 @@ class NameValidator(data: String?) : Validator<String>(data) {
         addValidation(MaxLengthStringValidation(16))
         addValidation(MatchRegexStringValidation("[А-Яа-я\\s-]+"))
     }
+}
 
+class EmailValidator(data: String?) : Validator<String>(data) {
+    override fun prepare() {
+        addValidation(NotEmptyStringValidation())
+        addValidation(MaxLengthStringValidation(32))
+        addValidation(MatchRegexStringValidation("[A-z]+@[A-z]+\\.[A-z]+"))
+    }
 }

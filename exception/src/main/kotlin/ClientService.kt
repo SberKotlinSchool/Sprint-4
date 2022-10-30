@@ -1,4 +1,5 @@
 import mu.KLogging
+import validator.EmailValidator
 import validator.NameValidator
 import validator.PhoneValidator
 
@@ -15,6 +16,7 @@ class ClientService {
         errorList.addAll(PhoneValidator(client.phone).validateAll())
         errorList.addAll(NameValidator(client.firstName).validateAll())
         errorList.addAll(NameValidator(client.lastName).validateAll())
+        errorList.addAll(EmailValidator(client.email).validateAll())
         // ...
         if (errorList.isNotEmpty()) {
             throw ValidationException(*errorList.toTypedArray())

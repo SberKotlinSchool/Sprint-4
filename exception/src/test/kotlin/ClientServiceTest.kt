@@ -68,6 +68,16 @@ class ClientServiceTest {
         assertContentEquals(expectedErrors, actual.errorCode)
     }
 
+    @ParameterizedTest
+    @MethodSource("getClientsWithInvalidEmail")
+    fun `fail save client - with invalid email`(client: Client, expectedErrors: Array<ErrorCode>) {
+        val actual = assertFailsWith<ValidationException> {
+            clientService.saveClient(client)
+        }
+
+        assertContentEquals(expectedErrors, actual.errorCode)
+    }
+
     private fun getClientFromJson(fileName: String): Client = this::class.java.getResource(fileName)
         .takeIf { it != null }
         ?.let { gson.fromJson(it.readText(), Client::class.java) }
@@ -87,6 +97,10 @@ class ClientServiceTest {
         @JvmStatic
         fun getClientsWithInvalidLastName(): List<Arguments> =
             getClientsFromJson("/fail/user_with_bad_lastname.json")
+
+        @JvmStatic
+        fun getClientsWithInvalidEmail(): List<Arguments> =
+            getClientsFromJson("/fail/user_with_bad_email.json")
 
         private fun getClientsFromJson(fileName: String): List<Arguments> =
             ClientServiceTest::class.java.getResource(fileName)
