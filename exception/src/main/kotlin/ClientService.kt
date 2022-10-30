@@ -1,4 +1,5 @@
 import mu.KLogging
+import validator.NameValidator
 import validator.PhoneValidator
 
 class ClientService {
@@ -12,6 +13,8 @@ class ClientService {
     private fun validateClient(client: Client) {
         val errorList = ArrayList<ErrorCode>()
         errorList.addAll(PhoneValidator(client.phone).validateAll())
+        errorList.addAll(NameValidator(client.firstName).validateAll())
+        errorList.addAll(NameValidator(client.lastName).validateAll())
         // ...
         if (errorList.isNotEmpty()) {
             throw ValidationException(*errorList.toTypedArray())

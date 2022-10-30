@@ -25,3 +25,11 @@ class MatchRegexStringValidation(private val expectedRegex: String) : Validation
         return null
     }
 }
+
+class MaxLengthStringValidation(private val maxLength: Int) : Validation<String>{
+    override fun validate(data: String): ErrorCode? {
+        if (data.length > maxLength)
+            return ErrorCode.INVALID_LENGTH
+        return null
+    }
+}

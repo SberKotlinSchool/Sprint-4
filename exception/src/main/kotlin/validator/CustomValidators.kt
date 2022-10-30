@@ -2,6 +2,7 @@ package validator
 
 import validation.ExactLengthStringValidation
 import validation.MatchRegexStringValidation
+import validation.MaxLengthStringValidation
 import validation.NotEmptyStringValidation
 
 class PhoneValidator(data: String?) : Validator<String>(data) {
@@ -12,3 +13,11 @@ class PhoneValidator(data: String?) : Validator<String>(data) {
     }
 }
 
+class NameValidator(data: String?) : Validator<String>(data) {
+    override fun prepare() {
+        addValidation(NotEmptyStringValidation())
+        addValidation(MaxLengthStringValidation(16))
+        addValidation(MatchRegexStringValidation("[А-Яа-я\\s-]+"))
+    }
+
+}
