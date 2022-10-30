@@ -1,12 +1,10 @@
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import kotlin.test.assertContentEquals
-import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNotNull
 
@@ -21,66 +19,37 @@ class ClientServiceTest {
         assertNotNull(result)
     }
 
-    @Test
-    fun `fail save client - validation error`() {
-        val client = getClientFromJson("/fail/user_with_bad_phone.json")
-        assertThrows<ValidationException>("Ожидаемая ошибка") {
-            clientService.saveClient(client)
-        }
-    }
-
-    @Test
-    fun `fail save client - validation errors`() {
-        val client = getClientFromJson("/fail/user_data_corrupted.json")
-        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
-            clientService.saveClient(client)
-        }
-        assertEquals(exception.errorCode[0], ErrorCode.INVALID_CHARACTER)
-    }
-
     @ParameterizedTest
     @MethodSource("getClientsWithInvalidPhone")
     fun `fail save client - with invalid phone`(client: Client, expectedErrors: Array<ErrorCode>) {
-        val actual = assertFailsWith<ValidationException> {
-            clientService.saveClient(client)
-        }
-
-        assertContentEquals(expectedErrors, actual.errorCode)
+        testCommonBody(client, expectedErrors)
     }
 
     @ParameterizedTest
     @MethodSource("getClientsWithInvalidFirstName")
     fun `fail save client - with invalid first name`(client: Client, expectedErrors: Array<ErrorCode>) {
-        val actual = assertFailsWith<ValidationException> {
-            clientService.saveClient(client)
-        }
-
-        assertContentEquals(expectedErrors, actual.errorCode)
+        testCommonBody(client, expectedErrors)
     }
 
     @ParameterizedTest
     @MethodSource("getClientsWithInvalidLastName")
     fun `fail save client - with invalid last name`(client: Client, expectedErrors: Array<ErrorCode>) {
-        val actual = assertFailsWith<ValidationException> {
-            clientService.saveClient(client)
-        }
-
-        assertContentEquals(expectedErrors, actual.errorCode)
+        testCommonBody(client, expectedErrors)
     }
 
     @ParameterizedTest
     @MethodSource("getClientsWithInvalidEmail")
     fun `fail save client - with invalid email`(client: Client, expectedErrors: Array<ErrorCode>) {
-        val actual = assertFailsWith<ValidationException> {
-            clientService.saveClient(client)
-        }
-
-        assertContentEquals(expectedErrors, actual.errorCode)
+        testCommonBody(client, expectedErrors)
     }
 
     @ParameterizedTest
     @MethodSource("getClientsWithInvalidSnils")
     fun `fail save client - with invalid snils`(client: Client, expectedErrors: Array<ErrorCode>) {
+        testCommonBody(client, expectedErrors)
+    }
+
+    private fun testCommonBody(client: Client, expectedErrors: Array<ErrorCode>) {
         val actual = assertFailsWith<ValidationException> {
             clientService.saveClient(client)
         }
