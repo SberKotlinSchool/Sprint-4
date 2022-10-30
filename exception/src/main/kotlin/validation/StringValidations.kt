@@ -1,6 +1,6 @@
-interface Validation<E> {
-    fun validate(data: E): ErrorCode?
-}
+package validation
+
+import ErrorCode
 
 class NotEmptyStringValidation : Validation<String> {
     override fun validate(data: String): ErrorCode? {

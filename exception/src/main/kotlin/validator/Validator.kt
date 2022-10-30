@@ -1,3 +1,8 @@
+package validator
+
+import ErrorCode
+import validation.Validation
+
 abstract class Validator<D>(private val data: D?) {
     private val validations = ArrayList<Validation<D>>()
 
@@ -23,13 +28,5 @@ abstract class Validator<D>(private val data: D?) {
         }
 
         return validationResult
-    }
-}
-
-class PhoneValidator(data: String?) : Validator<String>(data) {
-    override fun prepare() {
-        addValidation(NotEmptyStringValidation())
-        addValidation(ExactLengthStringValidation(11))
-        addValidation(MatchRegexStringValidation("[7|8]\\d+"))
     }
 }
