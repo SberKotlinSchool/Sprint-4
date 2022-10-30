@@ -8,7 +8,7 @@
       "version": 1
     },
     "errors": [
-      "EMPTY_FIELD"
+      "NULL_FIELD"
     ]
   },
   {
@@ -21,7 +21,9 @@
       "version": 1
     },
     "errors": [
-      "EMPTY_FIELD"
+      "EMPTY_FIELD",
+      "INVALID_LENGTH",
+      "INVALID_CHARACTER"
     ]
   },
   {

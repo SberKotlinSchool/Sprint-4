@@ -1,19 +1,35 @@
-abstract class Validator<T> {
-    abstract fun validate(value: T?): List<ErrorCode>
+abstract class Validator<D>(private val data: D?) {
+    private val validations = ArrayList<Validation<D>>()
+
+    init {
+        prepare()
+    }
+
+    protected abstract fun prepare()
+
+    protected fun addValidation(validation: Validation<D>) {
+        validations.add(validation)
+    }
+
+    fun validateAll(): List<ErrorCode> {
+        if (data == null) {
+            return listOf(ErrorCode.NULL_FIELD)
+        }
+
+        val validationResult = ArrayList<ErrorCode>()
+        validations.forEach { validation ->
+            validation.validate(data)
+                ?.let { error -> validationResult.add(error) }
+        }
+
+        return validationResult
+    }
 }
 
-class PhoneValidator : Validator<String>() {
-    override fun validate(value: String?): List<ErrorCode> {
-        if (value == null || value.trim() == "")
-            return listOf(ErrorCode.EMPTY_FIELD)
-
-        val resultErrors = ArrayList<ErrorCode>()
-
-        if (value.length != 11)
-            resultErrors.add(ErrorCode.INVALID_LENGTH)
-        if (!value.matches(Regex("[7|8]\\d+")))
-            resultErrors.add(ErrorCode.INVALID_CHARACTER)
-
-        return resultErrors
+class PhoneValidator(data: String?) : Validator<String>(data) {
+    override fun prepare() {
+        addValidation(NotEmptyStringValidation())
+        addValidation(ExactLengthStringValidation(11))
+        addValidation(MatchRegexStringValidation("[7|8]\\d+"))
     }
 }
