@@ -1,7 +1,9 @@
-package ru.sber.functional
+package functional
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import ru.sber.functional.Student
+import ru.sber.functional.StudentsGroup
 
 class StudentsGroupTest {
     @Test
