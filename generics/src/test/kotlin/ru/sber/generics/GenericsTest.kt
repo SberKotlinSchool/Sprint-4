@@ -20,12 +20,12 @@ class GenericsTest {
 
     @Test
     fun sorterTest() {
-//        val sorter = Sorter<String>()
-//        sorter.add("foo")
-//        sorter.add("hello")
-//        sorter.add("bar")
-//
-//        assertEquals(listOf("bar", "foo", "hello"), sorter.list)
+        val sorter = Sorter<String>()
+        sorter.add("foo")
+        sorter.add("hello")
+        sorter.add("bar")
+
+        assertEquals(listOf("bar", "foo", "hello"), sorter.list)
     }
 
     @Test

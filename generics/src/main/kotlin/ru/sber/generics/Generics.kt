@@ -11,11 +11,17 @@ fun <T : Comparable<T>> countGreaterThan(anArray: Array<T>, elem: T): Int =
 
 
 // 3.
-class Sorter {
-//    val list: MutableList
-//
-//    fun add(value: Any) {
-//    }
+class Sorter<T : Comparable<T>> {
+    val list: MutableList<T> = ArrayList()
+
+    fun add(value: T) {
+        list.apply {
+            add(
+                this.count { elementInList -> elementInList < value },
+                value
+            )
+        }
+    }
 }
 
 // 4.
