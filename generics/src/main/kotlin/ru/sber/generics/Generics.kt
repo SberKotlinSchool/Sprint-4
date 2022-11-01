@@ -6,9 +6,9 @@ fun <T> compare(p1: T, p2: T): Boolean {
 }
 
 // 2.
-fun countGreaterThan(anArray: Array<Any>, elem: Any): Int {
-    return 0
-}
+fun <T : Comparable<T>> countGreaterThan(anArray: Array<T>, elem: T): Int =
+    anArray.count { it > elem }
+
 
 // 3.
 class Sorter {
