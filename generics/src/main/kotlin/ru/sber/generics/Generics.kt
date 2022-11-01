@@ -1,5 +1,7 @@
 package ru.sber.generics
 
+import java.util.LinkedList
+
 // 1.
 fun <T> compare(p1: T, p2: T): Boolean {
     return p1 == p2
@@ -25,6 +27,4 @@ class Sorter<T : Comparable<T>> {
 }
 
 // 4.
-class Stack {
-
-}
+class Stack<T> : LinkedList<T>()

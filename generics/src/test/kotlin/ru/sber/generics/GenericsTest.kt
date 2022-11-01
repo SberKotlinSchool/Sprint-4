@@ -30,13 +30,13 @@ class GenericsTest {
 
     @Test
     fun stackTest() {
-//        val stack = Stack<Int>()
-//        assertTrue(stack.isEmpty())
-//
-//        stack.push(5)
-//        stack.push(3)
-//        assertEquals(3, stack.pop())
-//        assertFalse(stack.isEmpty())
-//        assertEquals(5, stack.pop())
+        val stack = Stack<Int>()
+        assertTrue(stack.isEmpty())
+
+        stack.push(5)
+        stack.push(3)
+        assertEquals(3, stack.pop())
+        assertFalse(stack.isEmpty())
+        assertEquals(5, stack.pop())
     }
 }
