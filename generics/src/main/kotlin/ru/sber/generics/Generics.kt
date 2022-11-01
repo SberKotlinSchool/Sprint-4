@@ -27,4 +27,12 @@ class Sorter<T : Comparable<T>> {
 }
 
 // 4.
-class Stack<T> : LinkedList<T>()
+class Stack<T> {
+    private val list = ArrayList<T>()
+
+    fun push(elem: T) = list.add(elem)
+
+    fun pop(): T = list.removeAt(list.size - 1)
+
+    fun isEmpty() = list.isEmpty()
+}
