@@ -5,7 +5,9 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
+import java.util.Locale
 import java.util.stream.Collectors
 import java.util.stream.IntStream
 
@@ -51,7 +53,9 @@ fun getNumberOfFridayThirteensInYear(year: Int): Int {
 
 // 4.
 fun getFormattedDateTime(dateTime: LocalDateTime): String {
-    return ""
+    val dateTimePattern = "dd MMM yyyy, HH:mm"
+    val dateTimeFormatter = DateTimeFormatter.ofPattern(dateTimePattern).withLocale(Locale.US)
+    return dateTime.format(dateTimeFormatter).toString()
 }
 
 
