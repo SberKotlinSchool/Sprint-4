@@ -1,8 +1,12 @@
 package ru.sber.datetime
 
 import java.time.Instant
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.temporal.TemporalAdjusters
+import java.util.stream.Collectors
+import java.util.stream.IntStream
 
 // 1.
 fun getZonesWithNonDivisibleByHourOffset(): Set<String> {
@@ -16,7 +20,16 @@ fun getZonesWithNonDivisibleByHourOffset(): Set<String> {
 
 // 2.
 fun getLastInMonthDayWeekList(year: Int): List<String> {
-    return emptyList()
+    val lastDayOfMonthAdjuster = TemporalAdjusters.lastDayOfMonth()
+
+    return IntStream.range(1, 13)
+        .mapToObj { month ->
+            LocalDate.of(year, month, 1)
+                .with(lastDayOfMonthAdjuster)
+                .dayOfWeek
+                .toString()
+        }
+        .collect(Collectors.toList())
 }
 
 // 3.
