@@ -1,5 +1,6 @@
 package ru.sber.datetime
 
+import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -34,7 +35,18 @@ fun getLastInMonthDayWeekList(year: Int): List<String> {
 
 // 3.
 fun getNumberOfFridayThirteensInYear(year: Int): Int {
-    return 0
+    val nextFridayAdjuster = TemporalAdjusters.next(DayOfWeek.FRIDAY)
+    var date = LocalDate.of(year, 1, 1)
+    var thirteenFridaysCount = 0
+
+    while (date.year == year) {
+        date = date.with(nextFridayAdjuster)
+        if (date.dayOfMonth == 13) {
+            thirteenFridaysCount++
+        }
+    }
+
+    return thirteenFridaysCount
 }
 
 // 4.
