@@ -1,7 +1,7 @@
 package ru.sber.generics
 
 // 1.
-fun compare(p1: Pair<Any, Any>, p2: Pair<Any, Any>): Boolean {
+fun <T : Comparable<T>, T2 : Comparable<T2>> compare(p1: Pair<T, T2>, p2: Pair<T, T2>): Boolean {
     return p1.first == p2.first && p1.second == p2.second
 }
 
