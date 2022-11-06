@@ -1,7 +1,7 @@
 import mu.KLogging
 
 fun List<ErrorCode>.withName(name: String): List<String> = this.map {
-    "${it.msg} $name"
+    "$name: ${it.msg}"
 }
 
 class ClientService {
@@ -20,7 +20,7 @@ class ClientService {
                 .withName("FirstName")
         )
         errorList.addAll(
-            LastNameValidator()
+            FirstNameValidator()
                 .validate(client.lastName)
                 .withName("lastName")
         )

@@ -1,6 +1,3 @@
-import java.util.regex.Matcher
-import java.util.regex.Pattern
-
 abstract class Validator<T> {
     abstract fun validate(value: T?): List<ErrorCode>
 }
@@ -20,12 +17,13 @@ open class CommonValidator(private val maxLength: Int = 0) : Validator<String>()
 }
 
 open class NumberValidator(private val maxLength: Int = 0) : Validator<String>() {
+    private val pattern = "[^0-9]".toRegex()
     override fun validate(value: String?): MutableList<ErrorCode> {
         val errors = mutableListOf<ErrorCode>()
         if (value === null) {
             errors.add(ErrorCode.EMPTY_VALUE)
         } else {
-            if (value.contains(Regex("[^0-9]"))) {
+            if (value.contains(pattern)) {
                 errors.add(ErrorCode.NUM_ONLY)
             }
             if (this.maxLength != 0 && value.length != this.maxLength) {
@@ -41,7 +39,7 @@ class PhoneValidator : NumberValidator(11) {
         val errors = super.validate(value)
         if (errors.isEmpty()) {
             value?.let {
-                if (!it.contains(Regex("^[78]"))) {
+                if (!(it[0] == '7' || it[0] == '8')) {
                     errors.add(ErrorCode.PHONE_NOT_MATCH)
                 }
             }
@@ -51,12 +49,11 @@ class PhoneValidator : NumberValidator(11) {
 }
 
 open class FirstNameValidator : CommonValidator(16) {
-    private val namePattern: Pattern = Pattern.compile("/[^а-яА-Я]/")
+    private val namePattern = "[^а-яА-Я]".toRegex()
     override fun validate(value: String?): MutableList<ErrorCode> {
         val errors = super.validate(value)
         value?.let {
-            val nameMatcher: Matcher = namePattern.matcher(value)
-            if (nameMatcher.matches()) {
+            if (value.matches(namePattern)) {
                 errors.add(ErrorCode.INVALID_CHARACTER)
             }
         }
@@ -64,19 +61,12 @@ open class FirstNameValidator : CommonValidator(16) {
     }
 }
 
-class LastNameValidator : FirstNameValidator() {
-    override fun validate(value: String?): MutableList<ErrorCode> {
-        return super.validate(value)
-    }
-}
-
 class EmailValidator : CommonValidator(32) {
-    private val emailPattern: Pattern = Pattern.compile(".+@.+\\.[a-z]+")
+    private val emailPattern = ".+@.+\\.[a-z]+".toRegex()
     override fun validate(value: String?): MutableList<ErrorCode> {
         val errors = super.validate(value)
         value?.let {
-            val emailMatcher: Matcher = emailPattern.matcher(value)
-            if (!emailMatcher.matches()) {
+            if (!value.matches(emailPattern)) {
                 errors.add(ErrorCode.EMAIL_NOT_MATCH)
             }
         }

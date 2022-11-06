@@ -21,16 +21,17 @@ class ClientServiceTest {
     @Test
     fun `fail save client - validation error`() {
         val client = getClientFromJson("/fail/user_with_bad_phone.json")
-        assertThrows<ValidationException>("Ожидаемая ошибка") {
+        val e = assertThrows<ValidationException> {
             clientService.saveClient(client)
         }
+        assertContains(e.errorCode[0], ErrorCode.NUMBER_LENGTH.msg)
     }
 
     @Test
     fun `fail save client - validation errors length`() {
         val client = getClientFromJson("/fail/user_data_corrupted.json")
         client.snils = "1"
-        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+        val exception = assertFailsWith<ValidationException> {
             clientService.saveClient(client)
         }
         assertEquals(exception.errorCode.size, 6)
@@ -45,7 +46,7 @@ class ClientServiceTest {
     fun `fail save client - validation error lastName max length`() {
         val client = getClientFromJson("/fail/user_data_corrupted.json")
         client.firstName = "test"
-        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+        val exception = assertFailsWith<ValidationException> {
             clientService.saveClient(client)
         }
         assertContains(exception.errorCode[0], ErrorCode.MAX_LENGTH.msg)
@@ -57,7 +58,7 @@ class ClientServiceTest {
         client.firstName = "test"
         client.lastName = "test"
         client.phone = "122"
-        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+        val exception = assertFailsWith<ValidationException> {
             clientService.saveClient(client)
         }
         assertContains(exception.errorCode[0], ErrorCode.NUMBER_LENGTH.msg)
@@ -69,7 +70,7 @@ class ClientServiceTest {
         client.firstName = "test"
         client.lastName = "test"
         client.phone = "12345678901"
-        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+        val exception = assertFailsWith<ValidationException> {
             clientService.saveClient(client)
         }
         assertContains(exception.errorCode[0], ErrorCode.PHONE_NOT_MATCH.msg)
@@ -82,7 +83,7 @@ class ClientServiceTest {
         client.lastName = "test"
         client.phone = "79110000000"
         client.email = "test"
-        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+        val exception = assertFailsWith<ValidationException> {
             clientService.saveClient(client)
         }
         assertContains(exception.errorCode[0], ErrorCode.EMAIL_NOT_MATCH.msg)
@@ -96,7 +97,7 @@ class ClientServiceTest {
         client.phone = "79110000000"
         client.email = "test@test.tt"
         client.snils = "1234567890s"
-        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+        val exception = assertFailsWith<ValidationException> {
             clientService.saveClient(client)
         }
         assertContains(exception.errorCode[0], ErrorCode.NUM_ONLY.msg)
