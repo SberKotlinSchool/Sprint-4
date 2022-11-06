@@ -16,17 +16,15 @@ open class CommonValidator(private val maxLength: Int = 0) : Validator<String>()
     }
 }
 
-open class NumberValidator(private val maxLength: Int = 0) : Validator<String>() {
+open class NumberValidator(private val maxLength: Int = 0) : CommonValidator(maxLength) {
     private val pattern = "[^0-9]".toRegex()
     override fun validate(value: String?): MutableList<ErrorCode> {
-        val errors = mutableListOf<ErrorCode>()
-        if (value === null) {
-            errors.add(ErrorCode.EMPTY_VALUE)
-        } else {
+        val errors = super.validate(value)
+        value?.let {
             if (value.contains(pattern)) {
                 errors.add(ErrorCode.NUM_ONLY)
             }
-            if (this.maxLength != 0 && value.length != this.maxLength) {
+            if (value.length != this.maxLength) {
                 errors.add(ErrorCode.NUMBER_LENGTH)
             }
         }
@@ -37,11 +35,9 @@ open class NumberValidator(private val maxLength: Int = 0) : Validator<String>()
 class PhoneValidator : NumberValidator(11) {
     override fun validate(value: String?): MutableList<ErrorCode> {
         val errors = super.validate(value)
-        if (errors.isEmpty()) {
-            value?.let {
-                if (!(it[0] == '7' || it[0] == '8')) {
-                    errors.add(ErrorCode.PHONE_NOT_MATCH)
-                }
+        value?.let {
+            if (!(it[0] == '7' || it[0] == '8')) {
+                errors.add(ErrorCode.PHONE_NOT_MATCH)
             }
         }
         return errors
