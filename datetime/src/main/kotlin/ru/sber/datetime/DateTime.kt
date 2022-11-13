@@ -25,8 +25,7 @@ fun getLastInMonthDayWeekList(year: Int): List<String> {
 // 3.
 fun getNumberOfFridayThirteensInYear(year: Int): Int {
     return Month.values()
-        .filter { LocalDate.of(year, it, 13).dayOfWeek === DayOfWeek.FRIDAY }
-        .count()
+        .count { LocalDate.of(year, it, 13).dayOfWeek.equals(DayOfWeek.FRIDAY) }
 }
 
 // 4.
