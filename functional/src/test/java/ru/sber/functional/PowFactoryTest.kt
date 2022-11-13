@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test
 
 class PowFactoryTest {
     @Test
-    fun `buildPowFunction should return lambda It should calculate to second power`() {
-         assertEquals(9, PowFactory.buildPowFunction(2)(3))
+    fun `buildPowFunction should return lambda It should calculate to second power`()
+    {
+         assertEquals(9, PowFactory.buildPowFunction(2)(3).toInt())
     }
 }
