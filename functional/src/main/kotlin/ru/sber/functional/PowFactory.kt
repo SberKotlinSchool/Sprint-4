@@ -6,5 +6,5 @@ object PowFactory {
     /**
      * Возвращает функцию, которая всегда возводит аргумент в нужную степень, указанную при создании функции.
      */
-    fun buildPowFunction(pow: Int): (Int) -> Long = {it.toDouble().pow(pow).toLong()}
+    fun buildPowFunction(pow: Int): (Int) -> Long = {value -> value.toDouble().pow(pow).toLong()}
 }
