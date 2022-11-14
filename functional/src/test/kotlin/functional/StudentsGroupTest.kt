@@ -14,8 +14,8 @@ internal class StudentsGroupTest {
     @Test
     fun `filterByPredicate should return students with avarageRate higher 4,5`() {
         val group = StudentsGroup();
-        val expected = group.students.filter { student -> student.averageRate > 4.5 }
-        val actual = group.filterByPredicate { student -> student.averageRate > 4.5 }
+        val expected = group.students.filter { it.averageRate > 4.5 }
+        val actual = group.filterByPredicate { it.averageRate > 4.5 }
         assertEquals(expected.size, actual.size)
     }
 }
