@@ -34,7 +34,7 @@ class EmailValidator : Validator<String>() {
     override fun validate(value: String?): List<ErrorCode> {
         value?.let {
             require(value.length <= 32) { return listOf(ErrorCode.INVALID_EMAIL) }
-            require(Pattern.matches("\\w+", value)) { return listOf(ErrorCode.INVALID_EMAIL) }
+           // require(Pattern.matches("\\p{L}+", value)) { return listOf(ErrorCode.INVALID_EMAIL) }
             require(EmailValidator.getInstance().isValid(value)) { return listOf(ErrorCode.INVALID_EMAIL) }
         }
         return emptyList()
@@ -68,10 +68,14 @@ fun isCheckSumOk(snils: String?): Boolean {
     var controlSum: String = ""
     var checkSum: Int = 0
     snils?.let {
-        controlSum = snils.substring(9, 10)
-        for (j in 8..0) {
-            checkSum += (snils.get(j).toInt()) * j
+        controlSum = snils.substring(9, 11)
+        for (j in 0 ..8) {
+            val toInt = (snils.get(j)).toString().toInt()
+            val i = toInt * (9-j)
+            checkSum += i
         }
     }
     return checkSum.toString() == controlSum
 }
+
+
