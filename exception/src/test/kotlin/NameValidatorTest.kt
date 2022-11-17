@@ -1,17 +1,12 @@
-import com.google.gson.Gson
-import io.mockk.mockk
-import org.junit.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class NameValidatorTest {
     companion object {
+        //Телефон - начинается с 7 или 8ки, только цифры, 11 знаков
         @JvmStatic
         fun getInvalidPhone() = listOf(
             Arguments.of("723", ErrorCode.INVALID_PHONE_LENGTH),
@@ -20,32 +15,56 @@ class NameValidatorTest {
             Arguments.of("abcdefghig!", ErrorCode.INVALID_PHONE_NUMBER)
         )
 
-//        @JvmStatic
-//        fun getTueThu() = listOf(
-//            Arguments.of("2022-11-01T00:15:30.00Z"),
-//            Arguments.of("2022-11-03T00:15:30.00Z")
-//        )
-//
-//        @JvmStatic
-//        fun getWeekend() = listOf(
-//            Arguments.of("2022-11-05T00:15:30.00Z"),
-//            Arguments.of("2022-11-06T00:15:30.00Z")
-//        )
+        // Имя и Фамилия - только кириллица, не более 16 символов каждое поле
+        @JvmStatic
+        fun getInvalidName() = listOf(
+            Arguments.of("ИвановИвановИвановИвановИвановИвановИвановИвановИванов", ErrorCode.INVALID_LENGTH),
+            Arguments.of("abcdefghig", ErrorCode.INVALID_CHARACTER)
+        )
+
+        //Email - латиница, с валидацией @имя_домена, не более 32 символов
+        @JvmStatic
+        fun getInvalidEmail() = listOf(
+            Arguments.of("иванов@мэйл.ру", ErrorCode.INVALID_EMAIL),
+            Arguments.of("ivanovmail.ru", ErrorCode.INVALID_EMAIL),
+            Arguments.of("ivanov@mail", ErrorCode.INVALID_EMAIL),
+            Arguments.of("ivanovivanovivanovivanovivanovivanovivanovivanov@mail.ru", ErrorCode.INVALID_EMAIL)
+        )
+
+        //СНИЛС - только цифры, 11 символов, с валидацией Контрольного числа
+        @JvmStatic
+        fun getInvalidSnils() = listOf(
+            Arguments.of("ивановаснил", ErrorCode.INVALID_SNILS),
+            Arguments.of("1234", ErrorCode.INVALID_SNILS),
+            Arguments.of("123456765456", ErrorCode.INVALID_SNILS),
+            Arguments.of("12345676545", ErrorCode.INVALID_SNILS_CHECKSUM)
+        )
     }
 
-    private val gson = Gson()
     private val clientService = ClientService()
 
-    @Test
-    fun `fail save client - validation errors  firstName, lastName`() {
-        val client = getClientFromJson("/fail/user_invalid_name.json")
+    @ParameterizedTest
+    @MethodSource("getInvalidName")
+    fun `fail save client - validation errors  firstName`(firstName: String, errorCode: ErrorCode) {
+        val client = Client(firstName, "Ivanov", "89057125358", "ivanov@mail.ru", "56553713311", 1)
         val exception =
             assertFailsWith<ValidationException>("Не получено ожидаемое исключение ValidationException при проверке firstName и lastName") {
                 clientService.saveClient(client)
             }
         val errorCodeList = exception.errorCode
-        assertTrue(errorCodeList.contains(ErrorCode.INVALID_LENGTH))
-        assertTrue(errorCodeList.contains(ErrorCode.INVALID_CHARACTER))
+        assertTrue(errorCodeList.contains(errorCode))
+    }
+
+    @ParameterizedTest
+    @MethodSource("getInvalidName")
+    fun `fail save client - validation errors  lastName`(lastName: String, errorCode: ErrorCode) {
+        val client = Client("Ivan", lastName, "89057125358", "ivanov@mail.ru", "56553713311", 1)
+        val exception =
+            assertFailsWith<ValidationException>("Не получено ожидаемое исключение ValidationException при проверке firstName и lastName") {
+                clientService.saveClient(client)
+            }
+        val errorCodeList = exception.errorCode
+        assertTrue(errorCodeList.contains(errorCode))
     }
 
     @ParameterizedTest
@@ -60,10 +79,27 @@ class NameValidatorTest {
         assertTrue(errorCodeList.contains(errorCode))
     }
 
+    @ParameterizedTest
+    @MethodSource("getInvalidEmail")
+    fun `fail save client - email validation errors`(email: String, errorCode: ErrorCode) {
+        val client = Client("Ivan", "Ivanov", "89057125358", email, "56553713311", 1)
+        val exception =
+            assertFailsWith<ValidationException>("Не получено ожидаемое исключение ValidationException при проверке firstName и lastName") {
+                clientService.saveClient(client)
+            }
+        val errorCodeList = exception.errorCode
+        assertTrue(errorCodeList.contains(errorCode))
+    }
 
-    private fun getClientFromJson(fileName: String): Client = this::class.java.getResource(fileName)
-        .takeIf { it != null }
-        ?.let { gson.fromJson(it.readText(), Client::class.java) }
-        ?: throw Exception("Что-то пошло не так))")
-
+    @ParameterizedTest
+    @MethodSource("getInvalidSnils")
+    fun `fail save client - snils validation errors`(snils: String, errorCode: ErrorCode) {
+        val client = Client("Ivan", "Ivanov", "89057125358", "ivanov@mail.ru", snils, 1)
+        val exception =
+            assertFailsWith<ValidationException>("Не получено ожидаемое исключение ValidationException при проверке firstName и lastName") {
+                clientService.saveClient(client)
+            }
+        val errorCodeList = exception.errorCode
+        assertTrue(errorCodeList.contains(errorCode))
+    }
 }
