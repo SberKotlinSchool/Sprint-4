@@ -1,9 +1,7 @@
 import com.google.gson.Gson
 import org.junit.Test
 import org.junit.jupiter.api.assertThrows
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
-import kotlin.test.assertNotNull
+import kotlin.test.*
 
 class ClientServiceTest {
 
@@ -11,27 +9,59 @@ class ClientServiceTest {
     private val clientService = ClientService()
 
     @Test
-    fun `success save client`() {
+    fun testSuccess() {
         val client = getClientFromJson("/success/user.json")
         val result = clientService.saveClient(client)
         assertNotNull(result)
     }
 
     @Test
-    fun `fail save client - validation error`() {
+    fun testBabPhone() {
         val client = getClientFromJson("/fail/user_with_bad_phone.json")
-        assertThrows<ValidationException>("Ожидаемая ошибка") {
+        val exception = assertThrows<ValidationException>("Ожидаемая ошибка") {
             clientService.saveClient(client)
         }
+        assertEquals(1, exception.errorCode.size)
+        assertEquals(ErrorCode.INVALID_PHONE_NUMBER, exception.errorCode[0])
     }
 
     @Test
-    fun `fail save client - validation errors`() {
+    fun testBabEmail() {
+        val client = getClientFromJson("/fail/user_with_bad_email.json")
+        val exception = assertThrows<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(1, exception.errorCode.size)
+        assertEquals(ErrorCode.INVALID_EMAIL, exception.errorCode[0])
+    }
+
+    @Test
+    fun testBabSnils() {
+        val client = getClientFromJson("/fail/user_with_bad_snils.json")
+        val exception = assertThrows<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(1, exception.errorCode.size)
+        assertEquals(ErrorCode.INVALID_SNILS_CHECK_SUM, exception.errorCode[0])
+    }
+
+    @Test
+    fun testBabSurname() {
+        val client = getClientFromJson("/fail/user_with_bad_surname.json")
+        val exception = assertThrows<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(1, exception.errorCode.size)
+        assertEquals(ErrorCode.INVALID_NAME, exception.errorCode[0])
+    }
+
+    @Test
+    fun testAllDataIncorrect() {
         val client = getClientFromJson("/fail/user_data_corrupted.json")
         val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
             clientService.saveClient(client)
         }
-        assertEquals(exception.errorCode[0], ErrorCode.INVALID_CHARACTER)
+        assertEquals(5, exception.errorCode.size)
     }
 
     private fun getClientFromJson(fileName: String): Client = this::class.java.getResource(fileName)
