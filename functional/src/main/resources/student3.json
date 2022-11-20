@@ -1,0 +1,10 @@
+{
+  "firstName": "Сергей",
+  "middleName": "Иванович",
+  "lastName": "Сергеев",
+  "age": 23,
+  "averageRate": 5,
+  "city": "Ростов",
+  "specialization": "Специализация отсутствует",
+  "prevEducation": "Нет образования"
+}

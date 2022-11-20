@@ -1,0 +1,10 @@
+{
+  "firstName": "Иван",
+  "middleName": "Иванович",
+  "lastName": "Иванов",
+  "age": 20,
+  "averageRate": 4,
+  "city": "Омск",
+  "specialization": "Специализация отсутствует",
+  "prevEducation": "Нет образования"
+}

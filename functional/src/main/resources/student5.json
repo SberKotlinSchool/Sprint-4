@@ -1,0 +1,10 @@
+{
+  "firstName": "Сергей",
+  "middleName": "Александрович",
+  "lastName": "Алексндров",
+  "age": 22,
+  "averageRate": 5,
+  "city": "Красноярск",
+  "specialization": "Специализация отсутствует",
+  "prevEducation": "Нет образования"
+}

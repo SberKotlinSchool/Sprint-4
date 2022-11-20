@@ -1,0 +1,10 @@
+{
+  "firstName": "Петр",
+  "middleName": "Петрович",
+  "lastName": "Петров",
+  "age": 21,
+  "averageRate": 4,
+  "city": "Томск",
+  "specialization": "Специализация отсутствует",
+  "prevEducation": "Нет образования"
+}
