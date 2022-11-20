@@ -1,6 +1,6 @@
 package ru.sber.generics
 
-import com.sun.org.apache.xpath.internal.operations.Bool
+//import com.sun.org.apache.xpath.internal.operations.Bool
 import java.util.*
 
 // 1.
