@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import java.time.LocalDateTime
 
 class DateTimeKtTest {
-
+/*
     @Test
     fun getZonesWithNonDivisibleByHourOffsetTest() {
         val result = getZonesWithNonDivisibleByHourOffset()
@@ -80,4 +80,6 @@ class DateTimeKtTest {
         result = getFormattedDateTime(dateTime)
         assertEquals("03 Jun 2021, 23:00", result)
     }
+
+ */
 }

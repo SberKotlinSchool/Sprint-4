@@ -1,7 +1,7 @@
 package ru.sber.generics
 
-import com.sun.org.apache.xpath.internal.operations.Bool
-import java.util.*
+//import com.sun.org.apache.xpath.internal.operations.Bool
+//import java.util.*
 
 // 1.
 //fun compare(p1: Pair, p2: Pair): Boolean {
