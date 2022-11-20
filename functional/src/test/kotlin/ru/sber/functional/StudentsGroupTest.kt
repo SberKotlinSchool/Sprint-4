@@ -18,6 +18,7 @@ class StudentsGroupTest {
         studentsGroup.students = listOf(student1, student2, student3, student4, student5)
 
         assertEquals(3, studentsGroup.filterByPredicate { it.age <= 21 }.size)
+        assertEquals(2, studentsGroup.filterByPredicate { it.averageRate == 4.0 }.size)
     }
 
     private fun getClientFromJson(fileName: String): Student = this::class.java.getResource(fileName)
