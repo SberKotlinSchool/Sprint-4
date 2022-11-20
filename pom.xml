@@ -8,6 +8,7 @@
     <artifactId>kotlin-school-sprint-4</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <description>Добавили</description>
     <modules>
         <module>datetime</module>
         <module>generics</module>
