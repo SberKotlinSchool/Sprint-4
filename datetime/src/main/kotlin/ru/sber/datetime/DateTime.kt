@@ -1,26 +1,38 @@
 package ru.sber.datetime
 
-import java.time.LocalDateTime
+import java.time.*
+import java.time.format.DateTimeFormatter
+import java.time.temporal.TemporalAdjusters
+import java.util.*
 
-// 1.
-fun getZonesWithNonDivisibleByHourOffset(): Set<String> {
-    return emptySet()
-}
+/**
+ * Сет часовых поясов, которые используют смещение от UTC не в полных часах
+ */
+fun getZonesWithNonDivisibleByHourOffset() =
+    ZoneId.getAvailableZoneIds()
+        .filter { TimeZone.getTimeZone(it).rawOffset % (60 * 60 * 1000) != 0 }
+        .toSet()
 
-// 2.
-fun getLastInMonthDayWeekList(year: Int): List<String> {
-    return emptyList()
-}
+/**
+ * Список, каким днём недели был последний день в месяце
+ */
+fun getLastInMonthDayWeekList(year: Int) =
+    Month.values().map {
+        LocalDate.of(year, it, 1)
+            .with(TemporalAdjusters.lastDayOfMonth())
+            .dayOfWeek.toString()
+    }
 
-// 3.
-fun getNumberOfFridayThirteensInYear(year: Int): Int {
-    return 0
-}
+/**
+ * Количество дней, выпадающих на пятницу 13-ое
+ */
+fun getNumberOfFridayThirteensInYear(year: Int) =
+    Month.values().map { LocalDate.of(year, it, 13).dayOfWeek }
+        .filter { it == DayOfWeek.FRIDAY }
+        .size
 
-// 4.
-fun getFormattedDateTime(dateTime: LocalDateTime): String {
-    return ""
-}
-
-
-
+/**
+ * Дата в формате "01 Aug 2021, 23:39", в котором дата локализована для вывода в США (US).
+ */
+fun getFormattedDateTime(dateTime: LocalDateTime): String =
+    dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm").localizedBy(Locale.US))
