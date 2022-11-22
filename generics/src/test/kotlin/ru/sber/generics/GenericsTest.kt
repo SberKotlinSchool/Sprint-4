@@ -3,13 +3,14 @@ package ru.sber.generics
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.math.BigDecimal
+import kotlin.test.assertFailsWith
 
 class GenericsTest {
 
     @Test
     fun comparePairsTest() {
-//        assertTrue(compare(Pair("Hello", 2L), Pair("Hello", 2L)))
-//        assertFalse(compare(Pair(BigDecimal(5), false), Pair(BigDecimal(5), true)))
+        assertTrue(compare(Pair("Hello", 2L), Pair("Hello", 2L)))
+        assertFalse(compare(Pair(BigDecimal(5), false), Pair(BigDecimal(5), true)))
     }
 
     @Test
@@ -20,23 +21,32 @@ class GenericsTest {
 
     @Test
     fun sorterTest() {
-//        val sorter = Sorter<String>()
-//        sorter.add("foo")
-//        sorter.add("hello")
-//        sorter.add("bar")
-//
-//        assertEquals(listOf("bar", "foo", "hello"), sorter.list)
+        val sorter = Sorter<String>()
+        sorter.add("foo")
+        sorter.add("hello")
+        sorter.add("bar")
+
+        assertEquals(listOf("bar", "foo", "hello"), sorter.list)
+
+        val intSorter = Sorter<Int>()
+        intSorter.add(11)
+        intSorter.add(42)
+        intSorter.add(4)
+
+        assertEquals(listOf(4, 11, 42), intSorter.list)
     }
 
     @Test
     fun stackTest() {
-//        val stack = Stack<Int>()
-//        assertTrue(stack.isEmpty())
-//
-//        stack.push(5)
-//        stack.push(3)
-//        assertEquals(3, stack.pop())
-//        assertFalse(stack.isEmpty())
-//        assertEquals(5, stack.pop())
+        val stack = Stack<Int>()
+        assertTrue(stack.isEmpty())
+
+        stack.push(5)
+        stack.push(3)
+        assertEquals(3, stack.peek())
+        assertEquals(3, stack.pop())
+        assertFalse(stack.isEmpty())
+        assertEquals(5, stack.pop())
+        assertFailsWith<IllegalArgumentException> { stack.pop() }
     }
 }
