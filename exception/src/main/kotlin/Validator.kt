@@ -1,27 +1,28 @@
 abstract class Validator<T> {
     abstract fun validate(value: T?): List<ErrorCode>
+
+    protected fun validateNull(value: String?) = value.isNullOrBlank()
 }
 
 class PhoneValidator : Validator<String>() {
     companion object {
-        val NUMBER_FORMAT = Regex("^[7,8]\\d{4}$")
+        val NUMBER_FORMAT = Regex("^[7,8]\\d{10}$")
     }
 
     override fun validate(value: String?): List<ErrorCode> {
-        if (value.isNullOrBlank() || !NUMBER_FORMAT.matches(value))
+        if (validateNull(value) || !NUMBER_FORMAT.matches(value!!))
             return listOf(ErrorCode.INVALID_NUMBER)
-
         return listOf()
     }
 }
 
 class NameValidator : Validator<String>() {
     companion object {
-        val NAME_FORMAT = Regex("^[A-я][а-я]{15}$")
+        val NAME_FORMAT = Regex("^[A-я][а-я]{1,15}$")
     }
 
     override fun validate(value: String?): List<ErrorCode> {
-        if (value.isNullOrBlank() || !NAME_FORMAT.matches(value))
+        if (validateNull(value) || !NAME_FORMAT.matches(value!!))
             return listOf(ErrorCode.INVALID_NAME)
         return listOf()
     }
@@ -29,11 +30,11 @@ class NameValidator : Validator<String>() {
 
 class LastNameValidator : Validator<String>() {
     companion object {
-        val LAST_NAME_FORMAT = Regex("^[A-яЁ][а-яё]{15}$")
+        val LAST_NAME_FORMAT = Regex("^[A-яЁ][а-яё]{1,15}$")
     }
 
     override fun validate(value: String?): List<ErrorCode> {
-        if (value.isNullOrBlank() || !LAST_NAME_FORMAT.matches(value))
+        if (validateNull(value) || !LAST_NAME_FORMAT.matches(value!!))
             return listOf(ErrorCode.INVALID_LAST_NAME)
         return listOf()
     }
@@ -41,14 +42,11 @@ class LastNameValidator : Validator<String>() {
 
 class EmailValidator : Validator<String>() {
     companion object {
-        val EMAIL_FORMAT = Regex("^[A-Z]{1,30}@[A-Za]{1,30}\\.[A-Z]{1,30}\$i")
+        val EMAIL_FORMAT = Regex("^[A-Za-z]{1,30}@[A-Za-z]{1,30}\\.[a-z]{1,30}$")
     }
 
     override fun validate(value: String?): List<ErrorCode> {
-        if (value.isNullOrBlank() || value.length > 32)
-            return listOf(ErrorCode.INVALID_EMAIL_LENGHT)
-
-        if (!EMAIL_FORMAT.matches(value))
+        if (validateNull(value) || !EMAIL_FORMAT.matches(value!!) || value.length > 32)
             return listOf(ErrorCode.INVALID_EMAIL)
 
         return listOf()
@@ -61,9 +59,19 @@ class SNILSValidator : Validator<String>() {
     }
 
     override fun validate(value: String?): List<ErrorCode> {
-        if (value.isNullOrBlank() || !SNILS_FORMAT.matches(value))
+        if (validateNull(value) || !SNILS_FORMAT.matches(value!!) || !checkControlSum(value))
             return listOf(ErrorCode.INVALID_SNILS)
         return listOf()
+    }
+
+    private fun checkControlSum(value: String): Boolean {
+        val snils = value.substring(0, 9)
+        val yy = value.substring(9).toInt()
+        var sum = 0
+        for (i in 0..8) {
+            sum += snils[i].toString().toInt()*(9-i)
+        }
+        return sum % 101 % 100 == yy
     }
 }
 
