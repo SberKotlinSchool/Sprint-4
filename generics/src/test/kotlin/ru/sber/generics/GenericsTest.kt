@@ -20,23 +20,23 @@ class GenericsTest {
 
     @Test
     fun sorterTest() {
-//        val sorter = Sorter<String>()
-//        sorter.add("foo")
-//        sorter.add("hello")
-//        sorter.add("bar")
-//
-//        assertEquals(listOf("bar", "foo", "hello"), sorter.list)
+        val sorter = Sorter<String>()
+        sorter.add("foo")
+        sorter.add("hello")
+        sorter.add("bar")
+
+        assertEquals(listOf("bar", "foo", "hello"), sorter.list)
     }
 
     @Test
     fun stackTest() {
-//        val stack = Stack<Int>()
-//        assertTrue(stack.isEmpty())
-//
-//        stack.push(5)
-//        stack.push(3)
-//        assertEquals(3, stack.pop())
-//        assertFalse(stack.isEmpty())
-//        assertEquals(5, stack.pop())
+        val stack = Stack<Int>()
+        assertTrue(stack.isEmpty())
+
+        stack.push(5)
+        stack.push(3)
+        assertEquals(3, stack.pop())
+        assertFalse(stack.isEmpty())
+        assertEquals(5, stack.pop())
     }
 }
