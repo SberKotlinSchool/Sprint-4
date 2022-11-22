@@ -8,8 +8,8 @@ class GenericsTest {
 
     @Test
     fun comparePairsTest() {
-//        assertTrue(compare(Pair("Hello", 2L), Pair("Hello", 2L)))
-//        assertFalse(compare(Pair(BigDecimal(5), false), Pair(BigDecimal(5), true)))
+        assertTrue(compare(Pair("Hello", 2L), Pair("Hello", 2L)))
+        assertFalse(compare(Pair(BigDecimal(5), false), Pair(BigDecimal(5), true)))
     }
 
     @Test
