@@ -1,9 +1,9 @@
 data class Client(
-    val firstName: String?,
-    val lastName: String?,
-    val phone: String?,
-    val email: String?,
-    val snils: String?,
+    var firstName: String?,
+    var lastName: String?,
+    var phone: String?,
+    var email: String?,
+    var snils: String?,
     var version: Int
 ) {
     fun incrementVersion() = version++
