@@ -1,0 +1,10 @@
+{
+  "firstName": "Сидор",
+  "middleName": "Иванович",
+  "lastName": "Сидоров",
+  "age": 19,
+  "averageRate": 5,
+  "city": "Новосибирск",
+  "specialization": "Специализация отсутствует",
+  "prevEducation": "Нет образования"
+}
