@@ -1,5 +1,5 @@
 1) Необходимо написать функцию, которая создает функции возведения в нужную степень.
-Должен быть реализован метод `ru.sber.functional.PowFactory.buildPowFunction`
+Должен быть реализован метод `kotlin.ru.sber.functional.PowFactory.buildPowFunction`
 
 2) Есть группа студентов `ru.sber.functional.StudentsGroup`.
 Необходимо:
