@@ -1,8 +1,5 @@
 package ru.sber.generics
 
-import java.util.*
-import kotlin.collections.ArrayDeque
-
 
 // 1.
 fun <T, U> compare(p1: Pair<T, U>, p2: Pair<T, U>): Boolean {
@@ -20,7 +17,7 @@ class Sorter<T : Comparable<T>> {
 
     fun add(value: T) {
         list.add(value)
-        Collections.sort(list)
+        list.sort()
     }
 }
 
