@@ -1,5 +1,6 @@
 package ru.sber.datetime
 
+import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.Month
@@ -23,8 +24,19 @@ fun getLastInMonthDayWeekList(year: Int): List<String> {
 
 // 3.
 fun getNumberOfFridayThirteensInYear(year: Int): Int {
-    return 0
+    var counter = 0
+    val firstDayOfYear = LocalDate.of(year, 1, 1)
+    var firstFridayOfYear = firstDayOfYear.with(TemporalAdjusters.next(DayOfWeek.FRIDAY))
+    do {
+        if (firstFridayOfYear.dayOfMonth == 13) {
+            counter++
+        }
+        firstFridayOfYear = firstFridayOfYear.plusWeeks(1)
+    } while (firstFridayOfYear < LocalDate.of(year, 12, 31))
+
+    return counter
 }
+
 
 // 4.
 fun getFormattedDateTime(dateTime: LocalDateTime): String {
