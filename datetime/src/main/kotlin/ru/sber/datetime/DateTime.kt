@@ -4,7 +4,9 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.Month
+import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
+import java.util.*
 
 
 // 1.
@@ -37,10 +39,9 @@ fun getNumberOfFridayThirteensInYear(year: Int): Int {
     return counter
 }
 
-
 // 4.
 fun getFormattedDateTime(dateTime: LocalDateTime): String {
-    return ""
+    return dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm").withLocale(Locale.US))
 }
 
 
