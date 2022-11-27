@@ -80,4 +80,5 @@ class DateTimeKtTest {
         result = getFormattedDateTime(dateTime)
         assertEquals("03 Jun 2021, 23:00", result)
     }
+
 }
