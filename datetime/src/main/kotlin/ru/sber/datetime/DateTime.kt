@@ -1,15 +1,24 @@
 package ru.sber.datetime
 
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.Month
+import java.time.temporal.TemporalAdjusters
+
 
 // 1.
 fun getZonesWithNonDivisibleByHourOffset(): Set<String> {
     return emptySet()
 }
 
-// 2.
 fun getLastInMonthDayWeekList(year: Int): List<String> {
-    return emptyList()
+    var daysList = arrayListOf<String>()
+
+    enumValues<Month>().forEach {
+        val localDate = LocalDate.of(year, it, 1)
+        daysList.add(localDate.with(TemporalAdjusters.lastDayOfMonth()).dayOfWeek.toString())
+    }
+    return daysList
 }
 
 // 3.
