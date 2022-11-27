@@ -1,6 +1,5 @@
 package ru.sber.datetime
 
-import io.mockk.InternalPlatformDsl.toStr
 import java.time.*
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
@@ -20,7 +19,7 @@ fun getZonesWithNonDivisibleByHourOffset(): Set<String> {
 fun getLastInMonthDayWeekList(year: Int): List<String> {
     val list: MutableList<String> = mutableListOf()
     for (month in 1..12) {
-        list += LocalDate.of(year, month, 15).with(TemporalAdjusters.lastDayOfMonth()).dayOfWeek.toStr()
+        list += LocalDate.of(year, month, 15).with(TemporalAdjusters.lastDayOfMonth()).dayOfWeek.toString()
     }
     return list
 }
@@ -29,7 +28,7 @@ fun getLastInMonthDayWeekList(year: Int): List<String> {
 fun getNumberOfFridayThirteensInYear(year: Int): Int {
     var count = 0
     for (month in 1..12) {
-        if ( "FRIDAY" == LocalDate.of(year, month, 13).dayOfWeek.toStr() ) count++
+        if ( "FRIDAY" == LocalDate.of(year, month, 13).dayOfWeek.toString() ) count++
     }
     return count
 }
