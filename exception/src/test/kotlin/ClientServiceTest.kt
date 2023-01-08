@@ -31,7 +31,53 @@ class ClientServiceTest {
         val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
             clientService.saveClient(client)
         }
-        assertEquals(exception.errorCode[0], ErrorCode.INVALID_CHARACTER)
+        // по моему, перепутаны actual и expected
+        assertEquals(ErrorCode.INVALID_CHARACTER, exception.errorCode[0])
+    }
+
+    @Test
+    fun `fail save client - FirstName error validation`() {
+        val client = getClientFromJson("/fail/new/user_bad_first_name.json")
+        val exception = assertFailsWith<ValidationException> {
+            clientService.saveClient(client)
+        }
+        assertEquals(ErrorCode.INVALID_CHARACTER, exception.errorCode[0])
+    }
+
+    @Test
+    fun `fail save client - SecondName error validation`() {
+        val client = getClientFromJson("/fail/new/user_bad_second_name.json")
+        val exception = assertFailsWith<ValidationException> {
+            clientService.saveClient(client)
+        }
+        assertEquals(ErrorCode.NULL_OR_EMPTY, exception.errorCode[0])
+    }
+
+    @Test
+    fun `fail save client - PhoneNumber error validation`() {
+        val client = getClientFromJson("/fail/new/user_bad_phone.json")
+        val exception = assertFailsWith<ValidationException> {
+            clientService.saveClient(client)
+        }
+        assertEquals(ErrorCode.INVALID_CHARACTER, exception.errorCode[0])
+    }
+
+    @Test
+    fun `fail save client - СНИЛС error validation`() {
+        val client = getClientFromJson("/fail/new/user_bad_snils.json")
+        val exception = assertFailsWith<ValidationException> {
+            clientService.saveClient(client)
+        }
+        assertEquals(ErrorCode.INVALID_CHECK_SUM, exception.errorCode[0])
+    }
+
+    @Test
+    fun `fail save client - Email error validation`() {
+        val client = getClientFromJson("/fail/new/user_bad_email.json")
+        val exception = assertFailsWith<ValidationException> {
+            clientService.saveClient(client)
+        }
+        assertEquals(ErrorCode.INVALID_CHARACTER, exception.errorCode[0])
     }
 
     private fun getClientFromJson(fileName: String): Client = this::class.java.getResource(fileName)
