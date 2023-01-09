@@ -7,6 +7,9 @@ class PowFactoryTest {
     @Test
     fun `buildPowFunction should return lambda It should calculate to second power`() {
         // expect
-        // assertEquals(9, PowFactory.buildPowFunction(2)(3))
+        val pow2 = PowFactory.buildPowFunction(2)
+        assertEquals(4, pow2(2))
+        assertEquals(9, pow2(3))
+        assertEquals(625, pow2(25))
     }
 }
