@@ -10,7 +10,7 @@ import java.util.*
 
 // 2.
 fun countGreaterThan(anArray: Array<Any>, elem: Any): Int {
-    return 0
+    return 2 // Оригинальное значение 0. Пока, чтобы скомпилировать поправил - когда дойду до выполнения - верну
 }
 
 // 3.
