@@ -1,7 +1,7 @@
 package ru.sber.generics
 
-import com.sun.org.apache.xpath.internal.operations.Bool
-import java.util.*
+//import com.sun.org.apache.xpath.internal.operations.Bool
+//import java.util.*
 
 // 1.
 //fun compare(p1: Pair, p2: Pair): Boolean {
@@ -10,7 +10,7 @@ import java.util.*
 
 // 2.
 fun countGreaterThan(anArray: Array<Any>, elem: Any): Int {
-    return 2 // Оригинальное значение 0. Пока, чтобы скомпилировать поправил - когда дойду до выполнения - верну
+    return 0
 }
 
 // 3.
