@@ -7,5 +7,5 @@ enum class ErrorCode(val code: Int, val msg: String) {
     INVALID_FIRST_DIGIT(104, "Неверный номер телефона. Номер должен начинаться с цифры 7 или 8"),
     INVALID_EMAIL(105, "Неверный адрес электронной почты"),
     INVALID_CYRILLIC(106, "Недопустимые символы. Разрешена только кириллица"),
-    INVALID_SNILS_CHECKSUM(107, "Неверный номер Снился")
+    INVALID_SNILS_CHECKSUM(107, "Неверный номер Снилса")
 }
