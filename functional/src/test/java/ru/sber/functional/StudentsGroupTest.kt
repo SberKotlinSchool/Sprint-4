@@ -10,7 +10,10 @@ class StudentsGroupTest {
     @BeforeEach
     fun `init`() {
         studentsGroup = StudentsGroup().apply {
-            students = getStudents()
+            val student1 = Student(firstName = "Василий", lastName = "Пупкин", averageRate = 4.7)
+            val student2 = Student(firstName = "ВасилийВасилий", lastName = "ПупкинПупкин", averageRate = 3.5)
+            val student3 = Student(firstName = "Коля", lastName = "Тяпкин", averageRate = 5.7)
+            students = listOf(student1, student2, student3)
         }
     }
 
@@ -25,13 +28,4 @@ class StudentsGroupTest {
         val students = studentsGroup.filterByPredicate { student: Student -> student.averageRate < 4.8 }
         assertEquals(2, students.size)
     }
-
-
-    private fun getStudents(): List<Student> {
-        val student1 = Student(firstName = "Василий", lastName = "Пупкин", averageRate = 4.7)
-        val student2 = Student(firstName = "ВасилийВасилий", lastName = "ПупкинПупкин", averageRate = 3.5)
-        val student3 = Student(firstName = "Коля", lastName = "Тяпкин", averageRate = 5.7)
-        return listOf(student1, student2, student3);
-    }
-
 }
