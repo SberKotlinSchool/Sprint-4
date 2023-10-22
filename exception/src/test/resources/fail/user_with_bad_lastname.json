@@ -1,0 +1,53 @@
+[
+  {
+    "client": {
+      "firstName": "Петр",
+      "phone": "82345678910",
+      "email": "petrov@mail.ru",
+      "snils": "56553713311",
+      "version": 1
+    },
+    "errors": [
+      "NULL_FIELD"
+    ]
+  },
+  {
+    "client": {
+      "firstName": "Петр",
+      "lastName": "    ",
+      "phone": "82345678910",
+      "email": "petrov@mail.ru",
+      "snils": "56553713311",
+      "version": 1
+    },
+    "errors": [
+      "EMPTY_FIELD"
+    ]
+  },
+  {
+    "client": {
+      "firstName": "Петр",
+      "lastName": "ПетровПетров-Петров",
+      "phone": "82345678910",
+      "email": "petrov@mail.ru",
+      "snils": "56553713311",
+      "version": 1
+    },
+    "errors": [
+      "INVALID_LENGTH"
+    ]
+  },
+  {
+    "client": {
+      "firstName": "Петр",
+      "lastName": "Иваhов",
+      "phone": "82345678910",
+      "email": "petrov@mail.ru",
+      "snils": "56553713311",
+      "version": 1
+    },
+    "errors": [
+      "INVALID_CHARACTER"
+    ]
+  }
+]

@@ -3,7 +3,7 @@
     "client": {
       "firstName": "Петр",
       "lastName": "Петров",
-      "email": "petrov@mail.ru",
+      "phone": "82345678910",
       "snils": "56553713311",
       "version": 1
     },
@@ -15,14 +15,13 @@
     "client": {
       "firstName": "Петр",
       "lastName": "Петров",
-      "phone": "  ",
-      "email": "petrov@mail.ru",
+      "phone": "82345678910",
+      "email": "   ",
       "snils": "56553713311",
       "version": 1
     },
     "errors": [
       "EMPTY_FIELD",
-      "INVALID_LENGTH",
       "INVALID_CHARACTER"
     ]
   },
@@ -30,21 +29,8 @@
     "client": {
       "firstName": "Петр",
       "lastName": "Петров",
-      "phone": "12345678910",
-      "email": "petrov@mail.ru",
-      "snils": "56553713311",
-      "version": 1
-    },
-    "errors": [
-      "INVALID_CHARACTER"
-    ]
-  },
-  {
-    "client": {
-      "firstName": "Петр",
-      "lastName": "Петров",
-      "phone": "777",
-      "email": "petrov@mail.ru",
+      "phone": "82345678910",
+      "email": "petrovpetrovpetrovpetrov@mail.ruru",
       "snils": "56553713311",
       "version": 1
     },
@@ -56,13 +42,12 @@
     "client": {
       "firstName": "Петр",
       "lastName": "Петров",
-      "phone": "123",
-      "email": "petrov@mail.ru",
+      "phone": "82345678910",
+      "email": "petrov@mailru",
       "snils": "56553713311",
       "version": 1
     },
     "errors": [
-      "INVALID_LENGTH",
       "INVALID_CHARACTER"
     ]
   },
@@ -70,13 +55,38 @@
     "client": {
       "firstName": "Петр",
       "lastName": "Петров",
-      "phone": "123asd",
-      "email": "petrov@mail.ru",
+      "phone": "82345678910",
+      "email": "petrovmail.ru",
       "snils": "56553713311",
       "version": 1
     },
     "errors": [
-      "INVALID_LENGTH",
+      "INVALID_CHARACTER"
+    ]
+  },
+  {
+    "client": {
+      "firstName": "Петр",
+      "lastName": "Петров",
+      "phone": "82345678910",
+      "email": "iva@nov@mail.ru",
+      "snils": "56553713311",
+      "version": 1
+    },
+    "errors": [
+      "INVALID_CHARACTER"
+    ]
+  },
+  {
+    "client": {
+      "firstName": "Петр",
+      "lastName": "Петров",
+      "phone": "82345678910",
+      "email": "Петров@mail.ru",
+      "snils": "56553713311",
+      "version": 1
+    },
+    "errors": [
       "INVALID_CHARACTER"
     ]
   }

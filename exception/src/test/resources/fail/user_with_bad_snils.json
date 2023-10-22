@@ -3,8 +3,8 @@
     "client": {
       "firstName": "Петр",
       "lastName": "Петров",
+      "phone": "82345678910",
       "email": "petrov@mail.ru",
-      "snils": "56553713311",
       "version": 1
     },
     "errors": [
@@ -15,9 +15,9 @@
     "client": {
       "firstName": "Петр",
       "lastName": "Петров",
-      "phone": "  ",
+      "phone": "82345678910",
       "email": "petrov@mail.ru",
-      "snils": "56553713311",
+      "snils": "   ",
       "version": 1
     },
     "errors": [
@@ -30,22 +30,9 @@
     "client": {
       "firstName": "Петр",
       "lastName": "Петров",
-      "phone": "12345678910",
+      "phone": "82345678910",
       "email": "petrov@mail.ru",
-      "snils": "56553713311",
-      "version": 1
-    },
-    "errors": [
-      "INVALID_CHARACTER"
-    ]
-  },
-  {
-    "client": {
-      "firstName": "Петр",
-      "lastName": "Петров",
-      "phone": "777",
-      "email": "petrov@mail.ru",
-      "snils": "56553713311",
+      "snils": "5655371",
       "version": 1
     },
     "errors": [
@@ -56,28 +43,26 @@
     "client": {
       "firstName": "Петр",
       "lastName": "Петров",
-      "phone": "123",
+      "phone": "82345678910",
       "email": "petrov@mail.ru",
-      "snils": "56553713311",
+      "snils": "56553713311123",
       "version": 1
     },
     "errors": [
-      "INVALID_LENGTH",
-      "INVALID_CHARACTER"
+      "INVALID_LENGTH"
     ]
   },
   {
     "client": {
       "firstName": "Петр",
       "lastName": "Петров",
-      "phone": "123asd",
+      "phone": "82345678910",
       "email": "petrov@mail.ru",
-      "snils": "56553713311",
+      "snils": "56553713312",
       "version": 1
     },
     "errors": [
-      "INVALID_LENGTH",
-      "INVALID_CHARACTER"
+      "INVALID_CONTROL_NUMBER"
     ]
   }
 ]
