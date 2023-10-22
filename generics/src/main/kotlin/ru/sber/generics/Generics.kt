@@ -1,7 +1,5 @@
 package ru.sber.generics
 
-import java.util.*
-
 // 1.
 fun <K,V> compare(p1: Pair<K, V>, p2: Pair<K, V>): Boolean {
     return p1 == p2
