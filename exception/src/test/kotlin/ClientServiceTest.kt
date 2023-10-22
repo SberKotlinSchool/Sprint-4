@@ -3,10 +3,10 @@ import org.junit.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
+
 
 class ClientServiceTest {
 
@@ -35,7 +35,7 @@ class ClientServiceTest {
     }
     companion object {
         @JvmStatic
-        fun provider(): Stream<Pair<String, List<ErrorCode>>> = Stream.of(
+        fun provider(): Array<Pair<String, List<ErrorCode>>> = arrayOf(
                 Pair("user_with_bad_phone.json", listOf(ErrorCode.INVALID_CHARACTER_PHONE, ErrorCode.INVALID_LENGTH_PHONE)),
                 Pair("user_with_bad_phone_character.json", listOf(ErrorCode.INVALID_CHARACTER_PHONE)),
                 Pair("user_data_corrupted.json", listOf(ErrorCode.INVALID_LENGTH_SNILS, ErrorCode.INVALID_CHARACTER_EMAIL, ErrorCode.INVALID_LENGTH_FIRST_NAME, ErrorCode.INVALID_LENGTH_LAST_NAME, ErrorCode.INVALID_CHARACTER_PHONE, ErrorCode.INVALID_LENGTH_PHONE)),
