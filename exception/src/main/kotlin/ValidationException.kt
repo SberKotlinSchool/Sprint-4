@@ -1,6 +1,11 @@
-class ValidationException(val errorCode: Array<ErrorCode>) : RuntimeException(errorCode.joinToString(",") { it.msg })
+abstract class ValidationException(message: String) : RuntimeException(message)
 
-enum class ErrorCode(val code: Int, val msg: String) {
-    INVALID_CHARACTER(100, "Недопустимый символ")
-    // ...
-}
+class InvalidPhoneNumber : ValidationException("Invalid phone number")
+
+class InvalidFirstName : ValidationException("Invalid first name")
+
+class InvalidLastName : ValidationException("Invalid last name")
+
+class InvalidEmail : ValidationException("Invalid e-mail")
+
+class InvalidInsuranceNumber : ValidationException("Invalid insurance number")

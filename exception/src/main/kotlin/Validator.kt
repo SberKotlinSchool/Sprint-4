@@ -1,9 +1,16 @@
-abstract class Validator<T> {
-    abstract fun validate(value: T?): List<ErrorCode>
-}
+class Validator(
+    private val rules: List<Rule> = listOf(
+        FirstNameRule(),
+        LastNameRule(),
+        PhoneNumberRule(),
+        EmailRule(),
+        InsuranceRule()
+    )
+) {
 
-class PhoneValidator : Validator<String>() {
-    override fun validate(value: String?): List<ErrorCode> {
-        return listOf(ErrorCode.INVALID_CHARACTER)
+    fun validate(client: Client) {
+        for (rule in rules) {
+            rule.check(client)
+        }
     }
 }
