@@ -5,18 +5,7 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
 import java.util.*
 
-// 1.
 fun getZonesWithNonDivisibleByHourOffset(): Set<String> {
-
-//    var zones: MutableSet<String> = mutableSetOf<String>()
-////    иногда нет времени, а просто 'Z' - это значит смещение равно 0
-//    for(zoneId in ZoneId.getAvailableZoneIds()) {
-//        val offset: String = ZoneId.of(zoneId).rules.getOffset(Instant.now()).toString()
-//        if(!offset.contains("Z") && !offset.endsWith(":00")) {
-//            zones.add(zoneId)
-//        }
-//    }
-//    return  zones
 
     return ZoneId.getAvailableZoneIds()
         .filter {
@@ -27,14 +16,7 @@ fun getZonesWithNonDivisibleByHourOffset(): Set<String> {
 
 }
 
-// 2.
 fun getLastInMonthDayWeekList(year: Int): List<String> {
-
-//    for (month in Month.values()) {
-//        var date = LocalDate.of(year, month, 1)
-//        date = date.with(TemporalAdjusters.lastDayOfMonth())
-//        println(date.dayOfWeek)
-//    }
 
     return Month.values()
         .map {
@@ -45,7 +27,6 @@ fun getLastInMonthDayWeekList(year: Int): List<String> {
 
 }
 
-// 3.
 fun getNumberOfFridayThirteensInYear(year: Int): Int {
 
     return Month.values()
@@ -58,7 +39,6 @@ fun getNumberOfFridayThirteensInYear(year: Int): Int {
 
 }
 
-// 4.
 fun getFormattedDateTime(dateTime: LocalDateTime): String {
 
     return dateTime.format(
