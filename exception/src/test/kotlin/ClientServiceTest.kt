@@ -1,8 +1,6 @@
 import com.google.gson.Gson
 import org.junit.Test
 import org.junit.jupiter.api.assertThrows
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 import kotlin.test.assertNotNull
 
 class ClientServiceTest {
@@ -18,20 +16,43 @@ class ClientServiceTest {
     }
 
     @Test
-    fun `fail save client - validation error`() {
-        val client = getClientFromJson("/fail/user_with_bad_phone.json")
-        assertThrows<ValidationException>("Ожидаемая ошибка") {
+    fun `fail save client - first name validation error`() {
+        val client = getClientFromJson("/fail/user_with_bad_fn.json")
+        assertThrows<InvalidFirstName> {
             clientService.saveClient(client)
         }
     }
 
     @Test
-    fun `fail save client - validation errors`() {
-        val client = getClientFromJson("/fail/user_data_corrupted.json")
-        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+    fun `fail save client - last name validation error`() {
+        val client = getClientFromJson("/fail/user_with_bad_ln.json")
+        assertThrows<InvalidLastName> {
             clientService.saveClient(client)
         }
-        assertEquals(exception.errorCode[0], ErrorCode.INVALID_CHARACTER)
+    }
+
+    @Test
+    fun `fail save client - phone validation error`() {
+        val client = getClientFromJson("/fail/user_with_bad_phone.json")
+        assertThrows<InvalidPhoneNumber> {
+            clientService.saveClient(client)
+        }
+    }
+
+    @Test
+    fun `fail save client - e-mail validation error`() {
+        val client = getClientFromJson("/fail/user_with_bad_email.json")
+        assertThrows<InvalidEmail> {
+            clientService.saveClient(client)
+        }
+    }
+
+    @Test
+    fun `fail save client - insurance validation error`() {
+        val client = getClientFromJson("/fail/user_with_bad_snils.json")
+        assertThrows<InvalidInsuranceNumber> {
+            clientService.saveClient(client)
+        }
     }
 
     private fun getClientFromJson(fileName: String): Client = this::class.java.getResource(fileName)
