@@ -1,10 +1,24 @@
 package ru.sber.functional
 
+import kotlin.random.Random
+
 class StudentsGroup {
 
-    lateinit var students: List<Student>
+    var students: List<Student>
 
-    fun filterByPredicate() {
-        TODO()
+    init {
+        students = (1..10).map {
+            Student(firstName = "Student$it",
+                    lastName = "Student$it",
+                    middleName = "MiddleName",
+                    age = Random.nextInt(16, 22),
+                    averageRate = it.toDouble(),
+                    city = "City",
+                    specialization = "Specialization",
+                    prevEducation = "PrevEducation")
+        }
+    }
+    fun filterByPredicate(function: (s: Student) -> Boolean) {
+        students = students.filter { function(it) }
     }
 }
