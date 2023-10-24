@@ -59,7 +59,7 @@ class ClientServiceTest {
 
     companion object {
         @JvmStatic
-        private fun provideTestParameters() = listOf(
+        fun provideTestParameters() = listOf(
             Arguments.of("/fail/user_with_bad_phone_invalid_len.json", ErrorCode.INVALID_PHONE_LENGTH),
             Arguments.of("/fail/user_with_bad_phone_invalid_start.json", ErrorCode.INVALID_PHONE_START_DIGIT),
             Arguments.of("/fail/user_with_bad_phone_invalid_symbol.json", ErrorCode.INVALID_PHONE_CHARACTER),
