@@ -9,11 +9,11 @@ class PhoneValidator : Validator<String>() {
             val errorCodeList = mutableListOf<ErrorCode>()
 
             if (it.length < 11 || it.length > 11) {
-                errorCodeList.add(ErrorCode.INVALID_LENGTH_NUMBER)
+                errorCodeList.add(ErrorCode.INVALID_PHONE_LENGTH)
             }
 
             if (!it.startsWith("7") && !it.startsWith("8")) {
-                errorCodeList.add(ErrorCode.INVALID_NUMBER)
+                errorCodeList.add(ErrorCode.INVALID_PHONE_NUMBER)
             }
 
             return errorCodeList
@@ -27,12 +27,12 @@ class NameValidator : Validator<String>() {
 
             val errorCodeList = mutableListOf<ErrorCode>()
 
-            if (containsNonCyrillicCharacters(it)) {
-                errorCodeList.add(ErrorCode.INVALID_CYRILLIC_CHARACTERS)
+            if (containsCyrillic(it)) {
+                errorCodeList.add(ErrorCode.INVALID_NAME_LANGUAGE)
             }
 
             if (it.length > 16) {
-                errorCodeList.add(ErrorCode.INVALID_PERSON_DATA_LENGTH)
+                errorCodeList.add(ErrorCode.INVALID_NAME_LENGTH)
             }
 
             return errorCodeList
@@ -40,9 +40,9 @@ class NameValidator : Validator<String>() {
 
     }
 
-    private fun containsNonCyrillicCharacters(input: String): Boolean {
-        val regex = Regex("[а-яА-Я]+")
-        return !regex.containsMatchIn(input)
+    private fun containsCyrillic(text: String): Boolean {
+        val cyrillicPattern = "[а-яА-Я]+".toRegex()
+        return !cyrillicPattern.containsMatchIn(text)
     }
 }
 
@@ -50,31 +50,23 @@ class EmailValidator : Validator<String>() {
     override fun validate(value: String?): List<ErrorCode> {
         return value?.let {
 
-            if (!isEmailValid(value)) {
-                listOf(ErrorCode.INVALID_EMAIL_FORMAT)
+            val errorCodeList = mutableListOf<ErrorCode>()
+
+            if (isValidEmail(it)) {
+                errorCodeList.add(ErrorCode.INVALID_EMAIL)
             }
 
-            emptyList()
+            if (it.length > 32) {
+                errorCodeList.add(ErrorCode.INVALID_EMAIL_LENGTH)
+            }
+            return errorCodeList
         } ?: listOf(ErrorCode.INVALID_DATA)
     }
 
-    private fun isEmailValid(email: String): Boolean {
-        val pattern = Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$")
 
-        if (pattern.matches(email))
-
-
-        return pattern.matches(email) && email.length > 32 && !email.contains(Regex("[а-яА-Я]"))
-    }
-
-    private fun containsNonLatinCharacters(input: String): Boolean {
-        val regex = Regex("[^A-Za-z]+")
-        return regex.containsMatchIn(input)
-    }
-
-    private fun containsNonEmailDomain(input: String): Boolean {
-        val regex = Regex("@[a-zA-Z0-9_]+")
-        return !regex.containsMatchIn(input)
+    private fun isValidEmail(email: String): Boolean {
+        val emailRegex = Regex("^[A-Za-z0-9._%+-]+@mail.ru$")
+        return !emailRegex.matches(email)
     }
 }
 
@@ -85,8 +77,9 @@ class SnilsValidator : Validator<String>() {
 
             val cleanSnils = value.replace(Regex("\\D"), "")
 
-            if (cleanSnils.length > 11) {
+            if (cleanSnils.length != 11) {
                 errorCodeList.add(ErrorCode.INVALID_LENGTH_SNILS)
+                return errorCodeList
             }
 
             if (!checkControlSum(value)) {
@@ -97,8 +90,6 @@ class SnilsValidator : Validator<String>() {
     }
 
     private fun checkControlSum(value: String): Boolean {
-
-
         val digits = value.map { it.toString().toInt() }
 
         val checksum = digits.take(9)
