@@ -35,7 +35,7 @@ fun String?.validateMail(): List<ErrorCode> {
             list.add(ErrorCode.INVALID_CHARACTER)
         if (it.length != 11)
             list.add(ErrorCode.INVALID_LENGTH)
-        if("^\\d*\$".toRegex().matches(it) && it.length == 11) {
+        if ("^\\d*\$".toRegex().matches(it) && it.length == 11) {
             val sum = this
                     .substring(0, it.length - 2)
                     .toCharArray()
