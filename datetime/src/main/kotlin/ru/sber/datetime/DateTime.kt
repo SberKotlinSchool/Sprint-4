@@ -4,11 +4,13 @@ import java.time.*
 import java.time.format.DateTimeFormatter
 import java.util.*
 
+private const val SECONDS_AMOUNT_IN_HOUR = 3600
+
 // 1.
 fun getZonesWithNonDivisibleByHourOffset(): Set<String> {
     val filteredSet = ZoneId.getAvailableZoneIds()
         .filter {
-            ZoneId.of(it).rules.getOffset(LocalDateTime.now(ZoneOffset.UTC)).totalSeconds % 3600 != 0
+            ZoneId.of(it).rules.getOffset(LocalDateTime.now(ZoneOffset.UTC)).totalSeconds % SECONDS_AMOUNT_IN_HOUR != 0
         }
         .toSet()
 
