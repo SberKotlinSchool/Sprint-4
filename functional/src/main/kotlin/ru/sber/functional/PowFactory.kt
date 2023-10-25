@@ -8,6 +8,6 @@ object PowFactory {
      */
     fun buildPowFunction(pow: Int) = { num: Int -> num.pow(pow) }
 
-    fun Int.pow(to: Int) = this.toDouble().pow(to.toDouble()).toInt()
+    fun Int.pow(to: Int) = this.toDouble().pow(to.toDouble())
 
 }

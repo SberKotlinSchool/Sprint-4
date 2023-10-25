@@ -10,6 +10,9 @@ class GenericsTest {
     fun comparePairsTest() {
         assertTrue(compare(Pair("Hello", 2L), Pair("Hello", 2L)))
         assertFalse(compare(Pair(BigDecimal(5), false), Pair(BigDecimal(5), true)))
+
+        assertTrue(compare(Pair(listOf(1,2,3), 2.0), Pair(listOf(1,2,3), 2.0)))
+        assertFalse(compare(Pair(arrayOf(1,2,3), 2.0), Pair(listOf(1,2,3), 2L)))
     }
 
     @Test
