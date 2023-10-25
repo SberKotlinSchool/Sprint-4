@@ -11,8 +11,8 @@ class GenericsTest {
         assertTrue(compare(Pair("Hello", 2L), Pair("Hello", 2L)))
         assertFalse(compare(Pair(BigDecimal(5), false), Pair(BigDecimal(5), true)))
 
-        assertTrue(compare(Pair(listOf(1,2,3), 2.0), Pair(listOf(1,2,3), 2.0)))
-        assertFalse(compare(Pair(arrayOf(1,2,3), 2.0), Pair(listOf(1,2,3), 2L)))
+        assertTrue(compare(Pair(listOf(1, 2, 3), 2.0), Pair(listOf(1, 2, 3), 2.0)))
+        assertFalse(compare(Pair(arrayOf(1, 2, 3), 2.0), Pair(listOf(1, 2, 3), 2L)))
     }
 
     @Test
@@ -21,6 +21,7 @@ class GenericsTest {
         assertEquals(2, countGreaterThan(arrayOf('a', 'b', 'c', 'd', 'e'), 'c'))
         assertEquals(1, countGreaterThan(arrayOf('a', 'b', 1, 2, 3), 2))
         assertEquals(1, countGreaterThan(arrayOf("abc", 'b', 123, Any(), listOf(3)), 2))
+        assertEquals(6, countGreaterThan(arrayOf(-3.0, 1, 5.0, 3L, 4, 10.toShort(), 6.0.toFloat(), 0x000FF000), 2))
     }
 
     @Test

@@ -11,6 +11,9 @@ fun countGreaterThan(anArray: Array<Any>, elem: Any): Int {
 }
 
 fun Any.isGreater(another: Any): Boolean {
+    if (this is Number && another is Number) {
+        return this.toDouble() > another.toDouble()
+    }
     if (this is Comparable<*> && another is Comparable<*> && this::class == another::class) {
         return compareValues(this, another) > 0
     }
