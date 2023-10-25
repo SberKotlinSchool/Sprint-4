@@ -33,6 +33,30 @@ class ClientServiceTest {
         }
         assertEquals(exception.errorCode[0], ErrorCode.INVALID_CHARACTER)
     }
+    @Test
+    fun `fail save client - validation firstName length`() {
+        val client = getClientFromJson("/fail/user_first_name_bad_length.json")
+        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_LENGTH)
+    }
+    @Test
+    fun `fail save client - validation email format`() {
+        val client = getClientFromJson("/fail/User_snils_email_format.json")
+        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_FORMAT)
+    }
+    @Test
+    fun `fail save client - validation snils sum`() {
+        val client = getClientFromJson("/fail/User_snils_bad_sum.json")
+        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_SUM_SNILS)
+    }
 
     private fun getClientFromJson(fileName: String): Client = this::class.java.getResource(fileName)
         .takeIf { it != null }
