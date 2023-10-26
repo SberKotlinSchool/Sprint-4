@@ -7,6 +7,7 @@ import java.time.Month
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
+import java.util.*
 
 // 1.
 fun getZonesWithNonDivisibleByHourOffset(): Set<String> {
@@ -28,7 +29,7 @@ fun getNumberOfFridayThirteensInYear(year: Int): Int = Month.values()
 
 // 4.
 fun getFormattedDateTime(dateTime: LocalDateTime): String {
-    val formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm")
+    val formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm").withLocale(Locale.US)
     return dateTime.format(formatter)
 }
 
