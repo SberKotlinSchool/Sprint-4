@@ -16,6 +16,38 @@ class ClientServiceTest {
         val result = clientService.saveClient(client)
         assertNotNull(result)
     }
+    @Test
+    fun `fail save client - bad firstName`() {
+        val client = getClientFromJson("/fail/user_with_bad_firstName.json")
+        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_FIRST_NAME)
+    }
+    @Test
+    fun `fail save client - bad lastName`() {
+        val client = getClientFromJson("/fail/user_with_bad_lastName.json")
+        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_LAST_NAME)
+    }
+    @Test
+    fun `fail save client - bad email`() {
+        val client = getClientFromJson("/fail/user_with_bad_email.json")
+        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_EMAIL)
+    }
+    @Test
+    fun `fail save client - bad snils`() {
+        val client = getClientFromJson("/fail/user_with_bad_snils.json")
+        val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_SNILS)
+    }
 
     @Test
     fun `fail save client - validation error`() {
@@ -31,7 +63,7 @@ class ClientServiceTest {
         val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
             clientService.saveClient(client)
         }
-        assertEquals(exception.errorCode[0], ErrorCode.INVALID_CHARACTER)
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_PHONE_NUMBER)
     }
 
     private fun getClientFromJson(fileName: String): Client = this::class.java.getResource(fileName)
