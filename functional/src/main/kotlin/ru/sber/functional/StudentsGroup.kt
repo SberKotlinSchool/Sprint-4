@@ -1,7 +1,5 @@
 package ru.sber.functional
 
-import javax.sql.rowset.Predicate
-
 class StudentsGroup {
 
     lateinit var students: List<Student>
