@@ -18,8 +18,40 @@ class ClientServiceTest {
     }
 
     @Test
-    fun `fail save client - validation error`() {
+    fun `bad phone client`() {
         val client = getClientFromJson("/fail/user_with_bad_phone.json")
+        assertThrows<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+    }
+
+    @Test
+    fun `bad email client`() {
+        val client = getClientFromJson("/fail/user_with_bad_email.json")
+        assertThrows<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+    }
+
+    @Test
+    fun `bad first name client`() {
+        val client = getClientFromJson("/fail/user_with_bad_first_name.json")
+        assertThrows<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+    }
+
+    @Test
+    fun `bad last name client`() {
+        val client = getClientFromJson("/fail/user_with_bad_last_name.json")
+        assertThrows<ValidationException>("Ожидаемая ошибка") {
+            clientService.saveClient(client)
+        }
+    }
+
+    @Test
+    fun `bad snils client`() {
+        val client = getClientFromJson("/fail/user_with_bad_snils.json")
         assertThrows<ValidationException>("Ожидаемая ошибка") {
             clientService.saveClient(client)
         }
@@ -31,7 +63,7 @@ class ClientServiceTest {
         val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
             clientService.saveClient(client)
         }
-        assertEquals(exception.errorCode[0], ErrorCode.INVALID_CHARACTER)
+        assertEquals(exception.errorCode[0], ErrorCode.PARAMETER_IS_NULL)
     }
 
     private fun getClientFromJson(fileName: String): Client = this::class.java.getResource(fileName)
