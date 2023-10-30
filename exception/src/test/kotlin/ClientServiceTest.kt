@@ -31,12 +31,13 @@ class ClientServiceTest {
         val exception = assertFailsWith<ValidationException>("Ожидаемая ошибка") {
             clientService.saveClient(client)
         }
-        assertEquals(exception.errorCode.size, 5)
+        assertEquals(exception.errorCode.size, 6)
         assertEquals(exception.errorCode[0], ErrorCode.VALUE_IS_NULL)
         assertEquals(exception.errorCode[1], ErrorCode.INVALID_NAME_LENGTH)
         assertEquals(exception.errorCode[2], ErrorCode.INVALID_REGION)
-        assertEquals(exception.errorCode[3], ErrorCode.INVALID_EMAIL_DOMEN)
-        assertEquals(exception.errorCode[4], ErrorCode.INVALID_SNILS_CONTROL_NUMBER)
+        assertEquals(exception.errorCode[3], ErrorCode.INVALID_PHONE_LENGTH)
+        assertEquals(exception.errorCode[4], ErrorCode.INVALID_EMAIL_DOMEN)
+        assertEquals(exception.errorCode[5], ErrorCode.INVALID_SNILS_CONTROL_NUMBER)
     }
 
     @Test
@@ -76,12 +77,12 @@ class ClientServiceTest {
             clientService.saveClient(client)
         }
         assertEquals(exception.errorCode.size, 7)
-        assertEquals(exception.errorCode[0], ErrorCode.INVALID_NAME_LANGUAGE)
-        assertEquals(exception.errorCode[1], ErrorCode.INVALID_NAME_LANGUAGE)
+        assertEquals(exception.errorCode[0], ErrorCode.INVALID_NAME_LENGTH)
+        assertEquals(exception.errorCode[1], ErrorCode.INVALID_NAME_LENGTH)
         assertEquals(exception.errorCode[2], ErrorCode.INVALID_REGION)
-        assertEquals(exception.errorCode[3], ErrorCode.INVALID_PHONE_NUMS)
-        assertEquals(exception.errorCode[4], ErrorCode.INVALID_EMAIL_LANGUAGE)
-        assertEquals(exception.errorCode[5], ErrorCode.INVALID_EMAIL_DOMEN)
+        assertEquals(exception.errorCode[3], ErrorCode.INVALID_PHONE_LENGTH)
+        assertEquals(exception.errorCode[4], ErrorCode.INVALID_EMAIL_LENGTH)
+        assertEquals(exception.errorCode[5], ErrorCode.INVALID_SNILS_LENGTH)
         assertEquals(exception.errorCode[6], ErrorCode.INVALID_SNILS_CHARACTER)
     }
 
