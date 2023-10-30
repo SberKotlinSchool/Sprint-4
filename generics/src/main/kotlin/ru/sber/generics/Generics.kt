@@ -1,9 +1,5 @@
 package ru.sber.generics
 
-import com.sun.org.apache.xpath.internal.operations.Bool
-import java.util.*
-import kotlin.collections.ArrayList
-
 fun<K, V> compare(p1: Pair<K, V>, p2: Pair<K, V>): Boolean {
     return ((p1.first == p2.first) && (p1.second == p2.second))
 }
