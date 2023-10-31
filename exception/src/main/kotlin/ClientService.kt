@@ -8,13 +8,16 @@ class ClientService {
         .also { logger.info { "Успешно сохранена новая версия $it" } }
 
 
-    private fun validateClient(client: Client) {
+    private fun validateClient(client: Client): ArrayList<ErrorCode> {
         val errorList = ArrayList<ErrorCode>()
+        errorList.addAll(listOf(client.firstName, client.lastName).map { LastNameFirstNameValidator().validate(it) }.flatten())
         errorList.addAll(PhoneValidator().validate(client.phone))
-        // ...
+        errorList.addAll(EmailValidator().validate(client.email))
+        errorList.addAll(SnilsValidator().validate(client.snils))
         if (errorList.isNotEmpty()) {
             throw ValidationException(*errorList.toTypedArray())
         }
+        return errorList
     }
 
     private fun saveToMyPhantomDB(client: Client) = client
