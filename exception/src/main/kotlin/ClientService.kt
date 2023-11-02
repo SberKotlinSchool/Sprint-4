@@ -9,11 +9,21 @@ class ClientService {
 
 
     private fun validateClient(client: Client) {
-        val errorList = ArrayList<ErrorCode>()
-        errorList.addAll(PhoneValidator().validate(client.phone))
-        // ...
-        if (errorList.isNotEmpty()) {
-            throw ValidationException(*errorList.toTypedArray())
+        val validatorList = listOf(
+            phoneValidator,
+            firstNameValidator,
+            lastNameValidator,
+            mailValidator,
+            snilsValidator
+        )
+
+        val errList = validatorList
+            .map { it(client) }
+            .filter{ it.isNotEmpty() }
+            .flatten()
+
+        if (errList.isNotEmpty()) {
+            throw ValidationException(errList.toTypedArray())
         }
     }
 
@@ -21,4 +31,12 @@ class ClientService {
         .also { it.incrementVersion() }
 
     companion object : KLogging()
+}
+
+fun main() {
+    try {
+        ClientService().saveClient(Client("Дима", "Дима", "29300305685", "123@mail.ru", "1231ы312321", 1))
+    } catch (e: ValidationException) {
+        println(e)
+    }
 }

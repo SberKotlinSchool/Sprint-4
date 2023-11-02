@@ -4,7 +4,5 @@ class StudentsGroup {
 
     lateinit var students: List<Student>
 
-    fun filterByPredicate() {
-        TODO()
-    }
+    fun filterByPredicate(filterPredicat: (Student) -> Boolean): List<Student> = students.filter(filterPredicat)
 }
