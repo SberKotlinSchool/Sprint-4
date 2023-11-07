@@ -4,16 +4,16 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.Month
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
 import java.time.temporal.TemporalAdjusters
 import java.util.Locale
 import java.util.TimeZone
 
 // 1.
-fun getZonesWithNonDivisibleByHourOffset(): Set<String> = TimeZone.getAvailableIDs()
-    .map { TimeZone.getTimeZone(it) }
-    .filter { it.rawOffset % (60 * 60 * 1000) != 0 }
-    .map { it.displayName }
+fun getZonesWithNonDivisibleByHourOffset(): Set<String> = ZoneId.getAvailableZoneIds()
+    .filter { ZoneId.of(it).rules.getOffset(LocalDateTime.now()).totalSeconds % (60 * 60) != 0 }
     .toSet()
 
 // 2.
